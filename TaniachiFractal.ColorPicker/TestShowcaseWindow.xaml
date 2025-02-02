@@ -1,0 +1,16 @@
+﻿<Window x:Class="TaniachiFractal.ColorPicker.TestShowcaseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TaniachiFractal.ColorPicker"
+        xmlns:colorpicker="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker"
+        mc:Ignorable="d"
+        Height="512" Width="512"
+        ResizeMode="NoResize"
+        Title="Check out this nifty color picker by Taniachi Fractal!"
+        Icon="/favicon.ico">
+    <Grid>
+        <colorpicker:SaturationLightnessSquare Hue="26"/>
+    </Grid>
+</Window>

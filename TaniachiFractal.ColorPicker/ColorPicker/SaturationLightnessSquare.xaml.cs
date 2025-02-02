@@ -1,28 +1,47 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.ComponentModel;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker
 {
     /// <summary>
-    /// Interaction logic for SaturationLightnessSquare.xaml
+    /// The square in the middle of the color picker, that is used to choose saturation and lightness of the color.
     /// </summary>
-    public partial class SaturationLightnessSquare : UserControl
+    public partial class SaturationLightnessSquare : UserControl, INotifyPropertyChanged
     {
+        private byte hue;
+
+        /// <summary>
+        /// The hue of the color in HSL
+        /// </summary>
+        public byte Hue
+        {
+            get => hue;
+            set
+            {
+                if (hue != value)
+                {
+                    hue = value;
+                    PropertyHasChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
         public SaturationLightnessSquare()
         {
             InitializeComponent();
+            DataContext = this;
         }
+
+        /// <inheritdoc cref="PropertyChangedEventHandler"/>
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Invoke <see cref="PropertyChanged"/>
+        /// </summary>
+        protected void PropertyHasChanged() => PropertyChanged?.Invoke(this,
+             new PropertyChangedEventArgs(null));
     }
 }
