@@ -4,18 +4,40 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker"
+             xmlns:conv="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.ValueConverters"
              d:DataContext="{d:DesignInstance Type=local:SaturationLightnessSquare}"
              mc:Ignorable="d"
              d:DesignHeight="128"
              d:DesignWidth="128"
              MaxHeight="128"
-             MaxWidth="128">
+             MaxWidth="128"
+             MinHeight="128"
+             MinWidth="128"
+             MouseDown="UserControl_MouseDown"
+             MouseUp="UserControl_MouseUp"
+             MouseMove="UserControl_MouseMove">
     <UserControl.Resources>
-        <local:HueSWMBrushConverter x:Key="HueSWMBrushConverter" />
-    </UserControl.Resources >
+        <conv:HueSWMBrushConverter x:Key="HueSWMBrushConverter" />
+    </UserControl.Resources>
+
     <Grid>
+
         <Rectangle x:Name="HueBackground"
                    Fill="{Binding Hue, Converter={StaticResource HueSWMBrushConverter}}" />
-        <Image Source="/ColorPicker/Graphics/SaturationLightnessSquare.png" Stretch="Fill" Margin="-1"/>
+
+        <Image Source="/ColorPicker/Graphics/SaturationLightnessSquare.png"
+               Stretch="Fill"
+               Margin="-1" />
+
+        <Canvas>
+            <local:SelectColorCircle x:Name="ColorSlider" />
+        </Canvas>
+
+        <Rectangle x:Name="test"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom" 
+                   Width="16"
+                   Height="16"
+                   />
     </Grid>
 </UserControl>

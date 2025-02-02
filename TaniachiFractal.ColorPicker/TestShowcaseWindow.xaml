@@ -6,11 +6,14 @@
         xmlns:local="clr-namespace:TaniachiFractal.ColorPicker"
         xmlns:colorpicker="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker"
         mc:Ignorable="d"
-        Height="512" Width="512"
+        Height="512"
+        Width="512"
         ResizeMode="NoResize"
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
     <Grid>
-        <colorpicker:SaturationLightnessSquare Hue="26"/>
+        <colorpicker:SaturationLightnessSquare Hue="228"
+                                               Width="128"
+                                               Height="128" x:Name="col" />
     </Grid>
 </Window>

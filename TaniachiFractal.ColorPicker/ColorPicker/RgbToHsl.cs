@@ -10,7 +10,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// <summary>
         /// Convert HSL to RGB
         /// </summary>
-        /// <param name="hue">Hue</param>
+        /// <param name="hue">color</param>
         /// <param name="sat">Saturation</param>
         /// <param name="lit">Lightness</param>
         /// <returns>A tuple with Red, Green and Blue values</returns>
@@ -50,12 +50,19 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         }
 
         /// <summary>
+        /// Convert HSL hue value to RGB
+        /// </summary>
+        /// <returns>The pure RGB value of the HSL hue</returns>
+        public static (byte r, byte g, byte b) ToRGB(byte hue)
+            => ToRGB(hue, 255, 128);
+
+        /// <summary>
         /// From RGB to HSL
         /// </summary>
         /// <param name="red">Red</param>
         /// <param name="grn">Green</param>
         /// <param name="blu">Blue</param>
-        /// <returns>A tuple with Hue, Saturation and Lightness values</returns>
+        /// <returns>A tuple with color, Saturation and Lightness values</returns>
         public static (byte h, byte s, byte l) ToHSL(byte red, byte grn, byte blu)
         {
             const double epsilon = 1e-5;
@@ -101,14 +108,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
             var lit = (byte)(l * 255.0);
 
             return (hue, sat, lit);
-        }
-
-        /// <summary>
-        /// Convert HSL hue value to RGB
-        /// </summary>
-        /// <returns>The pure RGB value of the HSL hue</returns>
-        public static (byte r, byte g, byte b) ToRGB(byte hue)
-            => ToRGB(hue, 255, 128);
+        }   
 
     }
 }

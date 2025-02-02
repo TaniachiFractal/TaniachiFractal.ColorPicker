@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
 
-namespace TaniachiFractal.ColorPicker.ColorPicker
+namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
 {
     /// <summary>
     /// HSL hue to <see cref="SolidColorBrush"/> converter
@@ -22,7 +22,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
                 output.Freeze();
                 return output;
             }
-            return (Brush)new SolidColorBrush(Colors.Black);
+            return new SolidColorBrush(Colors.Black);
         }
 
         /// <summary>

@@ -63,7 +63,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ColorPicker\HueSWMBrushConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\HueSWMBrushConverter.cs" />
+    <Compile Include="ColorPicker\SelectColorCircle.xaml.cs">
+      <DependentUpon>SelectColorCircle.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestShowcaseWindow.xaml.cs">
       <DependentUpon>TestShowcaseWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,10 @@
   <ItemGroup />
   <ItemGroup>
     <Page Include="ColorPicker\SaturationLightnessSquare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\SelectColorCircle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
