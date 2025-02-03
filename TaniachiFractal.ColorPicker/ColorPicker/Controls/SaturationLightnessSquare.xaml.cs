@@ -51,8 +51,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         #endregion
 
-        private const int ColorSliderMid = 10 / 2;
-
         /// <summary>
         /// Constructor
         /// </summary>
@@ -66,14 +64,14 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         private void UpdXY()
         {
             (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness);
-            X -= ColorSliderMid;
-            Y -= ColorSliderMid;
+            X -= Cnst.ColorSliderMid;
+            Y -= Cnst.ColorSliderMid;
         }
 
         private (double coercedX, double coercedY) UpdColorSlider(double x, double y)
         {
-            var setX = x - ColorSliderMid;
-            var setY = y - ColorSliderMid;
+            var setX = x - Cnst.ColorSliderMid;
+            var setY = y - Cnst.ColorSliderMid;
 
             if (setX > Cnst.SLSDimen)
             { setX = Cnst.SLSDimen; }

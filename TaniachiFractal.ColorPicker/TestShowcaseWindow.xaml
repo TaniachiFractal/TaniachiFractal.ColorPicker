@@ -12,18 +12,6 @@
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
     <Grid>
-        <cont:SaturationLightnessSquare Hue="228"
-                                        Width="128"
-                                        Height="128"
-                                        x:Name="SatLitSqr" />
-        <StackPanel HorizontalAlignment="Left"
-                    VerticalAlignment="Top">
-            <Label Name="HueLabel"
-                   Content="Hue" />
-            <Label Name="SatLabel"
-                   Content="Sat" />
-            <Label Name="LitLabel"
-                   Content="Lit" />
-        </StackPanel>
+        <cont:ColorPicker />
     </Grid>
 </Window>

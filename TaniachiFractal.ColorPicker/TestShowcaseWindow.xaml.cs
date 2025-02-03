@@ -14,24 +14,6 @@ namespace TaniachiFractal.ColorPicker
         public TestShowcaseWindow()
         {
             InitializeComponent();
-            BindColorSquare();
-        }
-
-        private void BindColorSquare()
-        {
-            var bindSat = new Binding(nameof(SatLitSqr.Saturation))
-            {
-                Source = SatLitSqr,
-                Mode = BindingMode.OneWay,
-            };
-            SatLabel.SetBinding(ContentProperty, bindSat);
-
-            var bindLit = new Binding(nameof(SatLitSqr.Lightness))
-            {
-                Source = SatLitSqr,
-                Mode = BindingMode.OneWay,
-            };
-            LitLabel.SetBinding(ContentProperty, bindLit);
         }
     }
 }

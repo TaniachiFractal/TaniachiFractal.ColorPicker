@@ -64,10 +64,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ColorPicker\Cnst.cs" />
+    <Compile Include="ColorPicker\Controls\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\Controls\ColorSlider.xaml.cs">
       <DependentUpon>ColorSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\Controls\!HSLControl.cs" />
+    <Compile Include="ColorPicker\Controls\HueWheel.xaml.cs">
+      <DependentUpon>HueWheel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\Controls\SaturationLightnessSquare.xaml.cs">
       <DependentUpon>SaturationLightnessSquare.xaml</DependentUpon>
     </Compile>
@@ -108,7 +114,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="ColorPicker\Controls\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ColorPicker\Controls\ColorSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\Controls\HueWheel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
