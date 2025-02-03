@@ -72,7 +72,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorPicker\RgbToHsl.cs" />
+    <Compile Include="ColorPicker\ColorCodeConverter.cs" />
     <Compile Include="ColorPicker\RgbToSWMBrush.cs" />
     <Compile Include="ColorPicker\SaturationLightnessSquare.xaml.cs">
       <DependentUpon>SaturationLightnessSquare.xaml</DependentUpon>

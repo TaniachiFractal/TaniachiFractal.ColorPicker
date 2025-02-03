@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,8 +8,11 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
     /// <summary>
     /// The square in the middle of the color picker, that is used to choose saturation and lightness of the color.
     /// </summary>
-    public partial class SaturationLightnessSquare : UserControl, INotifyPropertyChanged
+    public partial class SaturationLightnessSquare : UserControl
     {
+        private const byte FF = 255;
+        private const byte width = 128;
+
         #region hue
 
         /// <summary>
@@ -64,7 +68,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         #endregion
 
         /// <summary>
-        /// Constructor.
+        /// Constructor
         /// </summary>
         public SaturationLightnessSquare()
         {
@@ -72,28 +76,73 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
             DataContext = this;
         }
 
-        /// <inheritdoc cref="PropertyChangedEventHandler"/>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private bool MoveColorSlider(double x, double y)
+        private (double coercedX, double coercedY) UpdColorSlider(double x, double y)
         {
-            const int ColorSliderDimen = 16;
+            const int ColorSliderMid = 16 / 2;
 
-            var maxX = Width - (ColorSliderDimen / 2);
-            var maxY = Height - (ColorSliderDimen / 2);
-            var minX = -ColorSliderDimen / 2;
-            var minY = -ColorSliderDimen / 2;
+            var maxX = Width - ColorSliderMid;
+            var maxY = Height - ColorSliderMid;
+            var minX = -ColorSliderMid;
+            var minY = -ColorSliderMid;
 
-            var setX = x - (ColorSliderDimen / 2);
-            var setY = y - (ColorSliderDimen / 2);
+            var setX = x - ColorSliderMid;
+            var setY = y - ColorSliderMid;
 
-            if (setX < maxX && setX > minX && setY < maxY && setY > minY)
-            {
-                Canvas.SetLeft(ColorSlider, setX);
-                Canvas.SetTop(ColorSlider, setY);
-                return true;
-            }
-            return false;
+            if (setX > maxX)
+            { setX = maxX; }
+
+            if (setY > maxY)
+            { setY = maxY; }
+
+            if (setX < minX)
+            { setX = minX; }
+
+            if (setY < minY)
+            { setY = minY; }
+
+            Canvas.SetLeft(ColorSlider, setX);
+            Canvas.SetTop(ColorSlider, setY);
+
+            var corX = setX;
+            var corY = setY;
+
+            if (corX > 128)
+            { corX = 128; }
+            if (corY > 128)
+            { corY = 128; }
+            if (corX < 0)
+            { corX = 0; }
+            if (corY < 0)
+            { corY = 0; }
+
+            return (corX, corY);
+        }
+
+        private void UpdSatLit(double x, double y)
+        {
+            (x, y) = UpdColorSlider(x, y);
+
+            var (sat, lit) = CoordToSatLit(x, y);
+
+            Saturation = sat;
+            Lightness = lit;
+
+            test.Fill = ColorCodeConverter.HSLToRGB(Hue, Saturation, Lightness).ToBrush();
+        }
+
+        //private static (double x,  double y) SatLitToCoord(byte sat, byte lit)
+        //{
+        //    var x = width * FF * sat;
+        //}
+
+        private static (byte sat, byte lit) CoordToSatLit(double x, double y)
+        {
+            var sat = x / width * FF;
+
+            var litMul = 1 - sat / (2 * FF);
+            var lit = (FF - y / width * FF) * litMul;
+
+            return ((byte)sat, (byte)lit);
         }
 
         private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -109,15 +158,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
                 var position = e.GetPosition(this);
                 var x = position.X;
                 var y = position.Y;
-                if (MoveColorSlider(x, y))
-                {
-                    Saturation = (byte)x;
-                    Lightness = (byte)(128 - y);
-                }
-
-
-                test.Fill = RgbToHsl.ToRGB(Hue, Saturation, Lightness).ToBrush();
+                UpdSatLit(x, y);
             }
         }
+
     }
 }

@@ -17,7 +17,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
         {
             if (value is byte hue)
             {
-                var (r, g, b) = RgbToHsl.ToRGB(hue);
+                var (r, g, b) = ColorCodeConverter.HSLToRGB(hue);
                 var output = new SolidColorBrush(Color.FromRgb(r, g, b));
                 output.Freeze();
                 return output;
@@ -33,7 +33,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
             if (value is SolidColorBrush brush)
             {
                 var color = brush.Color;
-                return RgbToHsl.ToHSL(color.R, color.G, color.B).h;
+                return ColorCodeConverter.RGBToHSL(color.R, color.G, color.B).h;
             }
             return 0;
         }

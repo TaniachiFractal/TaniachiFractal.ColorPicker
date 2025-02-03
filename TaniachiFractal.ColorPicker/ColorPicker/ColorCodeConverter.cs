@@ -3,9 +3,9 @@
 namespace TaniachiFractal.ColorPicker.ColorPicker
 {
     /// <summary>
-    /// Converts between RGB and HSL values
+    /// Converts between RGB, HSL, HSV
     /// </summary>
-    public static class RgbToHsl
+    public static class ColorCodeConverter
     {
         /// <summary>
         /// Convert HSL to RGB
@@ -14,7 +14,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// <param name="sat">Saturation</param>
         /// <param name="lit">Lightness</param>
         /// <returns>A tuple with Red, Green and Blue values</returns>
-        public static (byte r, byte g, byte b) ToRGB(byte hue, byte sat, byte lit)
+        public static (byte r, byte g, byte b) HSLToRGB(byte hue, byte sat, byte lit)
         {
             double getVal(double VH, double V1, double V2)
             {
@@ -53,8 +53,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// Convert HSL hue value to RGB
         /// </summary>
         /// <returns>The pure RGB value of the HSL hue</returns>
-        public static (byte r, byte g, byte b) ToRGB(byte hue)
-            => ToRGB(hue, 255, 128);
+        public static (byte r, byte g, byte b) HSLToRGB(byte hue)
+            => HSLToRGB(hue, 255, 128);
 
         /// <summary>
         /// From RGB to HSL
@@ -63,9 +63,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// <param name="grn">Green</param>
         /// <param name="blu">Blue</param>
         /// <returns>A tuple with color, Saturation and Lightness values</returns>
-        public static (byte h, byte s, byte l) ToHSL(byte red, byte grn, byte blu)
+        public static (byte h, byte s, byte l) RGBToHSL(byte red, byte grn, byte blu)
         {
-            const double epsilon = 1e-5;
+            double hue = 0, sat, lit;
 
             var r = red / 255.0;
             var g = grn / 255.0;
@@ -73,42 +73,51 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
 
             var max = Math.Max(r, Math.Max(g, b));
             var min = Math.Min(r, Math.Min(g, b));
-            var delta = (max + min) / 2;
+            var delta = (max - min);
 
-            var h = 0.0;
-            var s = 0.0;
-            var l = (max - min) / 2;
+            lit = (max + min) / 2.0;
 
-            if (Math.Abs(delta) > epsilon)
-            {
-                if (l < 0.5)
-                { s = delta / (max + min); }
-                else
-                { s = delta / (2 - max - min); }
+            if (delta == 0)
+            { hue = 0; }
+            else if (max == r)
+            { hue = 60 * ((g - b) / delta) % 6; }
+            else if (max == g)
+            { hue = 60 * ((b - r) / delta + 2); }
+            else if (max == b)
+            { hue = 60 * ((r - g) / delta + 4); }
 
-                var dr = ((max - r) / 6 + delta / 2) / delta;
-                var dg = ((max - g) / 6 + delta / 2) / delta;
-                var db = ((max - b) / 6 + delta / 2) / delta;
+            if (delta == 0)
+            { sat = 0; }
+            else
+            { sat = delta / (1 - Math.Abs(2 * lit - 1)); }
 
-                if (Math.Abs(r - max) < epsilon)
-                { h = db - dg; }
-                else if (Math.Abs(g - max) < epsilon)
-                { h = 1.0 / 3.0 + dr - db; }
-                else if (Math.Abs(b - r - max) < epsilon)
-                { h = 2.0 / 3.0 + dg - dr; }
+            var h = hue * (255.0 / 360.0);
+            var s = sat * 255;
+            var l = lit * 255;
 
-                if (h < 0)
-                { h += 1; }
-                if (h > 1)
-                { h -= 1; }
-            }
+            return ((byte)h, (byte)s, (byte)l);
 
-            var hue = (byte)(h * 255.0);
-            var sat = (byte)(s * 255.0);
-            var lit = (byte)(l * 255.0);
+        }
 
-            return (hue, sat, lit);
-        }   
+        /// <summary>
+        /// From HSV to HSL
+        /// </summary>
+        /// <param name="hue">Hue</param>
+        /// <param name="sat">Saturation</param>
+        /// <param name="val">Value</param>
+        /// <returns>A tuple with color, Saturation and Lightness values</returns>
+        public static (byte h, byte s, byte l) HSVToHSL(byte hue, byte sat, byte val)
+        {
+            var l = val * (1 - (sat / 2.0));
+            double s;
+
+            if (l == 0 || l == 1)
+            { s = 0; }
+            else
+            { s = (val - l) / Math.Min(l, 1 - l); }
+
+            return (hue, (byte)l, (byte)s);
+        }
 
     }
 }
