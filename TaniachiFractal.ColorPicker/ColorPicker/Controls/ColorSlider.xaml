@@ -1,0 +1,22 @@
+﻿<local:HSLControl x:Class="TaniachiFractal.ColorPicker.ColorPicker.Controls.ColorSlider"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
+                  xmlns:conv="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.ValueConverters"
+                  d:DataContext="{d:DesignInstance Type=local:ColorSlider}"
+                  mc:Ignorable="d"
+                  Height="10"
+                  Width="10">
+    <UserControl.Resources>
+        <conv:LightnessSWMConverter x:Key="LighnessSWMConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Ellipse x:Name="RimCircle"
+                 Fill="{Binding Lightness, Converter={StaticResource LighnessSWMConverter}}" />
+        <Ellipse x:Name="InnerCircle"
+                 Fill="{Binding Brush}"
+                 Margin="1" />
+    </Grid>
+</local:HSLControl>

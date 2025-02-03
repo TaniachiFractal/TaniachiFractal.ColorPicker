@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaniachiFractal.ColorPicker"
-        xmlns:colorpicker="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker"
+        xmlns:cont="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
         mc:Ignorable="d"
         Height="512"
         Width="512"
@@ -12,10 +12,10 @@
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
     <Grid>
-        <colorpicker:SaturationLightnessSquare Hue="228"
-                                               Width="128"
-                                               Height="128"
-                                               x:Name="SatLitSqr" />
+        <cont:SaturationLightnessSquare Hue="228"
+                                        Width="128"
+                                        Height="128"
+                                        x:Name="SatLitSqr" />
         <StackPanel HorizontalAlignment="Left"
                     VerticalAlignment="Top">
             <Label Name="HueLabel"

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Media;
 
-namespace TaniachiFractal.ColorPicker.ColorPicker
+namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
 {
     /// <summary>
     /// Convert RGB values to <see cref="SolidColorBrush"/>
@@ -14,7 +14,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// <returns><see cref="SolidColorBrush"/></returns>
         public static SolidColorBrush ToBrush(this (byte r, byte g, byte b) rgbTuple)
         {
-            var output = new SolidColorBrush(Color.FromArgb(0xFF, rgbTuple.r, rgbTuple.g, rgbTuple.b));
+            var output = new SolidColorBrush(Color.FromRgb(rgbTuple.r, rgbTuple.g, rgbTuple.b));
             output.Freeze();
             return output;
         }

@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace TaniachiFractal.ColorPicker.ColorPicker
+namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
 {
     /// <summary>
-    /// Converts between RGB, HSL, HSV
+    /// Converts between RGB, HSL
     /// </summary>
     public static class ColorCodeConverter
     {
@@ -98,26 +98,5 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
             return ((byte)h, (byte)s, (byte)l);
 
         }
-
-        /// <summary>
-        /// From HSV to HSL
-        /// </summary>
-        /// <param name="hue">Hue</param>
-        /// <param name="sat">Saturation</param>
-        /// <param name="val">Value</param>
-        /// <returns>A tuple with color, Saturation and Lightness values</returns>
-        public static (byte h, byte s, byte l) HSVToHSL(byte hue, byte sat, byte val)
-        {
-            var l = val * (1 - (sat / 2.0));
-            double s;
-
-            if (l == 0 || l == 1)
-            { s = 0; }
-            else
-            { s = (val - l) / Math.Min(l, 1 - l); }
-
-            return (hue, (byte)l, (byte)s);
-        }
-
     }
 }
