@@ -7,11 +7,15 @@
                   d:DataContext="{d:DesignInstance Type=local:HueWheel}"
                   mc:Ignorable="d"
                   Height="255"
-                  Width="255">
+                  Width="255"
+                  MouseDown="UserControl_MouseDown"
+                  MouseUp="UserControl_MouseUp"
+                  MouseMove="UserControl_MouseMove"
+                  Loaded="HSLControl_Loaded">
     <Grid>
         <Path>
             <Path.Fill>
-                <ImageBrush ImageSource="/ColorPicker/Graphics/HueWheel.png" />
+                <ImageBrush ImageSource="/ColorPicker/Graphics/HueWheel.PNG" />
             </Path.Fill>
             <Path.Data>
                 <CombinedGeometry GeometryCombineMode="Xor">

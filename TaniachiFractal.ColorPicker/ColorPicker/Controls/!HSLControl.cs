@@ -72,7 +72,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// </summary>
         public static readonly DependencyProperty BrushProperty =
             DependencyProperty.Register(nameof(Brush), typeof(SolidColorBrush), typeof(SaturationLightnessSquare),
-                new PropertyMetadata(new SolidColorBrush(Colors.White), OnBrushChanged));
+                new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         /// <inheritdoc cref="BrushProperty"/>
         public SolidColorBrush Brush
@@ -100,24 +100,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         {
             Brush = ColorCodeConverter.HSLToRGB(Hue, Saturation, Lightness).ToBrush();
         }
-
-        #endregion
-
-        #region on brush changed
-
-        private static void OnBrushChanged(DependencyObject dependObj, DependencyPropertyChangedEventArgs evArgs)
-        {
-            if (dependObj is HSLControl con)
-            {
-                con.OnBrushChanged();
-            }
-        }
-
-        /// <summary>
-        /// Method to invoke upon changing the Brush
-        /// </summary>
-        protected virtual void OnBrushChanged()
-        {}
 
         #endregion
 

@@ -58,6 +58,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        private void HSLControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
             UpdXY();
         }
 

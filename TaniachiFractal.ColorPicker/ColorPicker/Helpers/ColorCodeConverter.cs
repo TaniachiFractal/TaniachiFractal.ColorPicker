@@ -54,7 +54,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         /// </summary>
         /// <returns>The pure RGB value of the HSL hue</returns>
         public static (byte r, byte g, byte b) HSLToRGB(byte hue)
-            => HSLToRGB(hue, 255, 128);
+            => HSLToRGB(hue, Cnst.PureColorSaturation, Cnst.PureColorLightness);
 
         /// <summary>
         /// From RGB to HSL

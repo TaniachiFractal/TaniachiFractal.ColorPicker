@@ -11,7 +11,7 @@
         ResizeMode="NoResize"
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
-    <Grid>
+    <Grid Background="#FF616161">
         <cont:ColorPicker />
     </Grid>
 </Window>

@@ -11,7 +11,8 @@
                   Width="128"
                   MouseDown="UserControl_MouseDown"
                   MouseUp="UserControl_MouseUp"
-                  MouseMove="UserControl_MouseMove">
+                  MouseMove="UserControl_MouseMove"
+                  Loaded="HSLControl_Loaded">
     <UserControl.Resources>
         <conv:HueSWMBrushConverter x:Key="HueSWMBrushConverter" />
     </UserControl.Resources>
