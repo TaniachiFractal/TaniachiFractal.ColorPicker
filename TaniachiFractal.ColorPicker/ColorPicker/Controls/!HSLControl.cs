@@ -11,6 +11,72 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     /// </summary>
     public partial class HSLControl : UserControl, INotifyPropertyChanged
     {
+        #region X
+
+        private double x;
+
+        /// <summary>
+        /// The X coord of the slider
+        /// </summary>
+        public double X
+        {
+            get => x;
+            set
+            {
+                if (x != value)
+                {
+                    x = value;
+                    PropertyHasChanged();
+                }
+            }
+        }
+
+        #endregion
+
+        #region Y
+
+        private double y;
+
+        /// <summary>
+        /// The Y coord of the slider
+        /// </summary>
+        public double Y
+        {
+            get => y;
+            set
+            {
+                if (y != value)
+                {
+                    y = value;
+                    PropertyHasChanged();
+                }
+            }
+        }
+
+        #endregion
+
+        #region angle
+
+        private double angle;
+
+        /// <summary>
+        /// The angle of the slider
+        /// </summary>
+        public double Angle
+        {
+            get => angle;
+            set
+            {
+                if (angle != value)
+                {
+                    angle = value;
+                    PropertyHasChanged();
+                }
+            }
+        }
+
+        #endregion
+
         #region hue
 
         /// <summary>

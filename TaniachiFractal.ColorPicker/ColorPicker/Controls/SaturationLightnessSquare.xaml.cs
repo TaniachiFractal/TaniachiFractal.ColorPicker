@@ -7,49 +7,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     /// </summary>
     public partial class SaturationLightnessSquare : HSLControl
     {
-        #region X
-
-        private double x;
-
-        /// <summary>
-        /// The X coord of the slider
-        /// </summary>
-        public double X
-        {
-            get => x;
-            set
-            {
-                if (x != value)
-                {
-                    x = value;
-                    PropertyHasChanged();
-                }
-            }
-        }
-
-        #endregion
-
-        #region Y
-
-        private double y;
-
-        /// <summary>
-        /// The Y coord of the slider
-        /// </summary>
-        public double Y
-        {
-            get => y;
-            set
-            {
-                if (y != value)
-                {
-                    y = value;
-                    PropertyHasChanged();
-                }
-            }
-        }
-
-        #endregion
+        private double ColorSliderMid;
 
         /// <summary>
         /// Constructor
@@ -62,25 +20,27 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         private void HSLControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
+            ColorSliderMid = CS.ActualHeight / 2;
+            CS.DataContext = this;
             UpdXY();
         }
 
         private void UpdXY()
         {
-            (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness);
-            X -= Cnst.ColorSliderMid;
-            Y -= Cnst.ColorSliderMid;
+            (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness, ActualHeight);
+            X -= ColorSliderMid;
+            Y -= ColorSliderMid;
         }
 
         private (double coercedX, double coercedY) UpdColorSlider(double x, double y)
         {
-            var setX = x - Cnst.ColorSliderMid;
-            var setY = y - Cnst.ColorSliderMid;
+            var setX = x - ColorSliderMid;
+            var setY = y - ColorSliderMid;
 
-            if (setX > Cnst.SLSDimen)
-            { setX = Cnst.SLSDimen; }
-            if (setY > Cnst.SLSDimen)
-            { setY = Cnst.SLSDimen; }
+            if (setX > ActualWidth)
+            { setX = ActualWidth; }
+            if (setY > ActualHeight)
+            { setY = ActualHeight; }
 
             X = setX;
             Y = setY;
@@ -104,7 +64,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         {
             (x, y) = UpdColorSlider(x, y);
 
-            var (sat, lit) = SLSHelper.CoordToSatLit(x, y);
+            var (sat, lit) = SLSHelper.CoordToSatLit(x, y, ActualHeight);
 
             Saturation = sat;
             Lightness = lit;

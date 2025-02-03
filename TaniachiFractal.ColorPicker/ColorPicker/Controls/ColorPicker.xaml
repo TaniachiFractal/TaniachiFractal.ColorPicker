@@ -11,8 +11,11 @@
     <Grid>
         <StackPanel>
             <Grid>
-                <local:SaturationLightnessSquare Saturation="10" Lightness="10"/>
-                <local:HueWheel Hue="128"/>
+                <local:SaturationLightnessSquare x:Name="SLS"
+                                                 Saturation="255"
+                                                 Lightness="128" />
+                <local:HueWheel x:Name="HW"
+                                Hue="0" />
             </Grid>
         </StackPanel>
     </Grid>

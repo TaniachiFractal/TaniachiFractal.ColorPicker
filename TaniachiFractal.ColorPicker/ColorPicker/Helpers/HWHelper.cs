@@ -9,7 +9,7 @@
         /// Convert an angle in rads into a byte hue
         /// </summary>
         public static byte ToHue(this double angle)
-            => (byte)(angle * 255);
+            => (byte)(255 - angle * 255);
 
         /// <summary>
         /// Convert a byte hue into an angle

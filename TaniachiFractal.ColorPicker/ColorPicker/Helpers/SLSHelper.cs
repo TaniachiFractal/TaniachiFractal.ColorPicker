@@ -8,10 +8,10 @@
         /// <summary>
         /// Saturation and lightness to SLS coords
         /// </summary>
-        public static (double x, double y) SatLitToCoord(byte sat, byte lit)
+        public static (double x, double y) SatLitToCoord(byte sat, byte lit, double SLSDimen)
         {
-            var x = sat * Cnst.SLSDimen / Cnst.FF;
-            var y = Cnst.FF - Cnst.SLSDimen * (Cnst.FF + (lit / LitMul(sat))) / Cnst.FF;
+            var x = sat * SLSDimen / Cnst.FF;
+            var y = Cnst.FF - SLSDimen * (Cnst.FF + (lit / LitMul(sat))) / Cnst.FF;
 
             return (x, y);
         }
@@ -19,10 +19,10 @@
         /// <summary>
         /// SLS coords to saturation and lightness
         /// </summary>
-        public static (byte sat, byte lit) CoordToSatLit(double x, double y)
+        public static (byte sat, byte lit) CoordToSatLit(double x, double y, double SLSDimen)
         {
-            var sat = x / Cnst.SLSDimen * Cnst.FF;
-            var lit = (Cnst.FF - (y / Cnst.SLSDimen * Cnst.FF)) * LitMul(sat);
+            var sat = x / SLSDimen * Cnst.FF;
+            var lit = (Cnst.FF - (y / SLSDimen * Cnst.FF)) * LitMul(sat);
 
             return ((byte)sat, (byte)lit);
         }

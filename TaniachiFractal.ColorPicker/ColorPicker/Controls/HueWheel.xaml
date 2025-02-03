@@ -37,7 +37,8 @@
             </Path.Data>
         </Path>
         <Canvas>
-            <local:ColorSlider Canvas.Left="{Binding X}"
+            <local:ColorSlider x:Name="CS"
+                               Canvas.Left="{Binding X}"
                                Canvas.Top="{Binding Y}" />
         </Canvas>
     </Grid>
