@@ -15,13 +15,15 @@
                   Loaded="HSLControl_Loaded">
     <UserControl.Resources>
         <conv:HueSWMBrushConverter x:Key="HueSWMBrushConverter" />
+        <BitmapImage x:Key="SaturationLightnessSquarePNG"
+                     UriSource="../Graphics/SaturationLightnessSquare.PNG" />
     </UserControl.Resources>
     <Grid>
 
         <Rectangle x:Name="HueBackground"
                    Fill="{Binding Hue, Converter={StaticResource HueSWMBrushConverter}}" />
 
-        <Image Source="/ColorPicker/Graphics/SaturationLightnessSquare.png"
+        <Image Source="{StaticResource SaturationLightnessSquarePNG}"
                Stretch="Fill"
                Margin="-1" />
 

@@ -12,16 +12,20 @@
                   MouseUp="UserControl_MouseUp"
                   MouseMove="UserControl_MouseMove"
                   Loaded="HSLControl_Loaded">
+    <UserControl.Resources>
+        <BitmapImage x:Key="HueWheelPNG"
+                     UriSource="../Graphics/HueWheel.PNG" />
+    </UserControl.Resources>
     <Grid>
         <Path>
             <Path.Fill>
-                <ImageBrush ImageSource="/ColorPicker/Graphics/HueWheel.PNG" />
+                <ImageBrush ImageSource="{StaticResource HueWheelPNG}" />
             </Path.Fill>
             <Path.Data>
                 <CombinedGeometry GeometryCombineMode="Xor">
                     <CombinedGeometry.Geometry1>
-                        <EllipseGeometry RadiusX="120"
-                                         RadiusY="120"
+                        <EllipseGeometry RadiusX="127"
+                                         RadiusY="127"
                                          Center="127,127" />
                     </CombinedGeometry.Geometry1>
                     <CombinedGeometry.Geometry2>

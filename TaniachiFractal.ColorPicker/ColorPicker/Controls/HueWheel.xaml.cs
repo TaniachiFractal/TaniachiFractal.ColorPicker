@@ -77,7 +77,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         #endregion
 
         private const double wheelMiddle = 127;
-        private const double radius = 110;
+        private const double radius = 113.5;
 
         /// <summary>
         /// Constructor
