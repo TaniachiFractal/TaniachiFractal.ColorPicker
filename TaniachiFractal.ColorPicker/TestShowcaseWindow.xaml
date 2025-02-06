@@ -12,7 +12,13 @@
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
     <Grid Background="#FF6B6B6B">
-        <cont:ColorPicker Margin="10"
-                          x:Name="ColorPicker"/>
+        <StackPanel>
+            <cont:ColorPicker Margin="10"
+                              x:Name="ColorPicker"
+                              Hue="128"
+                              Saturation="100"
+                              Lightness="100" />
+
+        </StackPanel>
     </Grid>
 </Window>

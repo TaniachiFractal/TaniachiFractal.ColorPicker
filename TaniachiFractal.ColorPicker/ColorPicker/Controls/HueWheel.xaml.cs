@@ -18,7 +18,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// </summary>
         public static readonly DependencyProperty AngleProperty =
             DependencyProperty.Register(nameof(Angle), typeof(double), typeof(HueWheel),
-                new PropertyMetadata(0.0));
+                new PropertyMetadata(0.0, OnAngleChanged));
 
         /// <inheritdoc cref="AngleProperty"/>
         public double Angle
@@ -27,12 +27,21 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             set => SetValue(AngleProperty, value);
         }
 
+        private static void OnAngleChanged(DependencyObject dependObj, DependencyPropertyChangedEventArgs evArgs)
+        {
+            if (dependObj is HueWheel hw)
+            {
+                hw.UpdXY();
+            }
+        }
+
         #endregion
 
         private const double wheelMiddle = 127;
         private const double radius = 113.5;
 
-        private double ColorSliderMid;
+        private double ColorSliderMidWidth;
+        private double ColorSliderMidHeight;
         private double X;
         private double Y;
 
@@ -47,11 +56,18 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             Lightness = Cnst.PureColorLightness;
         }
 
+        /// <inheritdoc cref="HSLControl.OnColorsChanged()"/>
+        protected override void OnColorsChanged()
+        {
+            base.OnColorsChanged();
+            UpdXY();
+        }
+
         private void HSLControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ColorSliderMid = CS.ActualWidth / 2;
+            ColorSliderMidWidth = CS.ActualWidth / 2;
+            ColorSliderMidHeight = CS.ActualHeight / 2;
             UpdXY();
-
             BindHue();
         }
 
@@ -72,8 +88,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         private void UpdXY()
         {
             (X, Y) = (radius * Math.Cos(Angle), radius * Math.Sin(Angle));
-            X += wheelMiddle - ColorSliderMid;
-            Y += wheelMiddle - ColorSliderMid;
+            X += wheelMiddle - ColorSliderMidWidth;
+            Y += wheelMiddle - ColorSliderMidHeight;
             Canvas.SetLeft(CS, X);
             Canvas.SetTop(CS, Y);
         }

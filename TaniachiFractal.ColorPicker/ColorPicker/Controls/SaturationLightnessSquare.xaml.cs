@@ -8,7 +8,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     /// </summary>
     public partial class SaturationLightnessSquare : HSLControl
     {
-        private double ColorSliderMid;
+        private double ColorSliderMidHeight;
+        private double ColorSliderMidWidth;
         private double X;
         private double Y;
 
@@ -21,17 +22,25 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             DataContext = this;
         }
 
+        /// <inheritdoc cref="HSLControl.OnColorsChanged()"/>
+        protected override void OnColorsChanged()
+        {
+            base.OnColorsChanged();
+            UpdXY();
+        }
+
         private void HSLControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ColorSliderMid = CS.ActualHeight / 2;
+            ColorSliderMidHeight = CS.ActualHeight / 2;
+            ColorSliderMidWidth = CS.ActualWidth / 2;
             UpdXY();
         }
 
         private void UpdXY()
         {
             (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness, ActualHeight);
-            X -= ColorSliderMid;
-            Y -= ColorSliderMid;
+            X -= ColorSliderMidWidth;
+            Y -= ColorSliderMidHeight;
 
             Canvas.SetLeft(CS, X);
             Canvas.SetTop(CS, Y);
@@ -39,8 +48,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         private (double coercedX, double coercedY) UpdColorSlider(double x, double y)
         {
-            var setX = x - ColorSliderMid;
-            var setY = y - ColorSliderMid;
+            var setX = x - ColorSliderMidHeight;
+            var setY = y - ColorSliderMidHeight;
 
             if (setX > ActualWidth)
             { setX = ActualWidth; }

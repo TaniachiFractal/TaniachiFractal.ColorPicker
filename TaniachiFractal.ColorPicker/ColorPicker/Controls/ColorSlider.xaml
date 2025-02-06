@@ -6,9 +6,7 @@
                   xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
                   xmlns:conv="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.ValueConverters"
                   d:DataContext="{d:DesignInstance Type=local:ColorSlider}"
-                  mc:Ignorable="d"
-                  Height="10"
-                  Width="10">
+                  mc:Ignorable="d">
     <UserControl.Resources>
         <conv:LightnessSWMConverter x:Key="LighnessSWMConverter" />
     </UserControl.Resources>

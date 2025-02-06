@@ -37,7 +37,9 @@
             </Path.Data>
         </Path>
         <Canvas>
-            <local:ColorSlider x:Name="CS"/>
+            <local:ColorSlider x:Name="CS"
+                               Width="10"
+                               Height="10" />
         </Canvas>
     </Grid>
 </local:HSLControl>
