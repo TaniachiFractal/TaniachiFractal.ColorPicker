@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Data;
-using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
+using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
@@ -10,10 +11,30 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     /// </summary>
     public partial class HueWheel : HSLControl
     {
+        #region angle
+
+        /// <summary>
+        /// The angle property
+        /// </summary>
+        public static readonly DependencyProperty AngleProperty =
+            DependencyProperty.Register(nameof(Angle), typeof(double), typeof(HueWheel),
+                new PropertyMetadata(0.0));
+
+        /// <inheritdoc cref="AngleProperty"/>
+        public double Angle
+        {
+            get => (double)GetValue(AngleProperty);
+            set => SetValue(AngleProperty, value);
+        }
+
+        #endregion
+
         private const double wheelMiddle = 127;
         private const double radius = 113.5;
 
         private double ColorSliderMid;
+        private double X;
+        private double Y;
 
         /// <summary>
         /// Constructor
@@ -26,50 +47,35 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             Lightness = Cnst.PureColorLightness;
         }
 
-        private void BindCS()
-        {
-            var satBind = new Binding(nameof(Saturation))
-            {
-                Source = this,
-                Mode = BindingMode.OneWay,
-            };
-            CS.SetBinding(SaturationProperty, satBind);
-
-            var litBind = new Binding(nameof(Lightness))
-            {
-                Source = this,
-                Mode = BindingMode.OneWay,
-            };
-            CS.SetBinding(LightnessProperty, litBind);
-
-            CS.DataContext = this;
-        }
-
         private void HSLControl_Loaded(object sender, RoutedEventArgs e)
         {
             ColorSliderMid = CS.ActualWidth / 2;
-            SetAngle(Hue);
             UpdXY();
-            BindCS();
+
+            BindHue();
+        }
+
+        private void BindHue()
+        {
+            var bind = new Binding(nameof(Hue))
+            {
+                Source = DataContext,
+                Mode = BindingMode.TwoWay,
+                Converter = new HueAngleConverter()
+            };
+            SetBinding(AngleProperty, bind);
         }
 
         private void SetAngle(double x, double y)
             => Angle = Math.Atan2(y - wheelMiddle, x - wheelMiddle);
-
-        private void SetAngle(byte hue)
-            => Angle = hue.ToAngle();
 
         private void UpdXY()
         {
             (X, Y) = (radius * Math.Cos(Angle), radius * Math.Sin(Angle));
             X += wheelMiddle - ColorSliderMid;
             Y += wheelMiddle - ColorSliderMid;
-        }
-
-        private void UpdHue()
-        {
-            Hue = Angle.ToHue();
-            UpdXY();
+            Canvas.SetLeft(CS, X);
+            Canvas.SetTop(CS, Y);
         }
 
         private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -87,7 +93,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
                 var y = position.Y;
 
                 SetAngle(x, y);
-                UpdHue();
+                UpdXY();
             }
         }
 

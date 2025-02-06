@@ -38,6 +38,9 @@
   <PropertyGroup>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TaniachiFractal.ColorPicker.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -77,8 +80,8 @@
     <Compile Include="ColorPicker\Controls\SaturationLightnessSquare.xaml.cs">
       <DependentUpon>SaturationLightnessSquare.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\Helpers\HWHelper.cs" />
     <Compile Include="ColorPicker\Helpers\SLSHelper.cs" />
+    <Compile Include="ColorPicker\ValueConverters\HueAngleConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\LightnessSWMConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\HueSWMBrushConverter.cs" />
     <Compile Include="TestShowcaseWindow.xaml.cs">

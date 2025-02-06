@@ -1,4 +1,6 @@
-﻿namespace TaniachiFractal.ColorPicker.ColorPicker
+﻿using System;
+
+namespace TaniachiFractal.ColorPicker.ColorPicker
 {
     /// <summary>
     /// Constants
@@ -9,6 +11,11 @@
         /// byte.MaxValue = 255
         /// </summary>
         public const byte FF = 255;
+
+        /// <summary>
+        /// Max rad angle / 255 = 2Pi/255
+        /// </summary>
+        public const double AngleHue = (2 * Math.PI) / FF;
 
         /// <summary>
         /// The lightness of a pure hue color

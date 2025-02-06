@@ -28,9 +28,7 @@
                Margin="-1" />
 
         <Canvas>
-            <local:ColorSlider x:Name="CS"
-                               Canvas.Left="{Binding X}"
-                               Canvas.Top="{Binding Y}" />
+            <local:ColorSlider x:Name="CS"/>
         </Canvas>
     </Grid>
 </local:HSLControl>

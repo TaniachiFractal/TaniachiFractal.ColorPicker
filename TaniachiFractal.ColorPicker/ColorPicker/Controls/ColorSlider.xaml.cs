@@ -11,7 +11,6 @@
         public ColorSlider()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }

@@ -18,6 +18,6 @@
                  Fill="{Binding Lightness, Converter={StaticResource LighnessSWMConverter}}" />
         <Ellipse x:Name="InnerCircle"
                  Fill="{Binding Brush}"
-                 Margin="1" />
+                 Margin="1.5" />
     </Grid>
 </local:HSLControl>

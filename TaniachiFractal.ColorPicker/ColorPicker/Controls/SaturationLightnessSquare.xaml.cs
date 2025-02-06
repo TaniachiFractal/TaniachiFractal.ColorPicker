@@ -1,4 +1,5 @@
-﻿using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
+﻿using System.Windows.Controls;
+using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
@@ -8,6 +9,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     public partial class SaturationLightnessSquare : HSLControl
     {
         private double ColorSliderMid;
+        private double X;
+        private double Y;
 
         /// <summary>
         /// Constructor
@@ -21,7 +24,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         private void HSLControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             ColorSliderMid = CS.ActualHeight / 2;
-            CS.DataContext = this;
             UpdXY();
         }
 
@@ -30,6 +32,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness, ActualHeight);
             X -= ColorSliderMid;
             Y -= ColorSliderMid;
+
+            Canvas.SetLeft(CS, X);
+            Canvas.SetTop(CS, Y);
         }
 
         private (double coercedX, double coercedY) UpdColorSlider(double x, double y)

@@ -11,79 +11,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
     /// </summary>
     public partial class HSLControl : UserControl, INotifyPropertyChanged
     {
-        #region X
-
-        private double x;
-
-        /// <summary>
-        /// The X coord of the slider
-        /// </summary>
-        public double X
-        {
-            get => x;
-            set
-            {
-                if (x != value)
-                {
-                    x = value;
-                    PropertyHasChanged();
-                }
-            }
-        }
-
-        #endregion
-
-        #region Y
-
-        private double y;
-
-        /// <summary>
-        /// The Y coord of the slider
-        /// </summary>
-        public double Y
-        {
-            get => y;
-            set
-            {
-                if (y != value)
-                {
-                    y = value;
-                    PropertyHasChanged();
-                }
-            }
-        }
-
-        #endregion
-
-        #region angle
-
-        private double angle;
-
-        /// <summary>
-        /// The angle of the slider
-        /// </summary>
-        public double Angle
-        {
-            get => angle;
-            set
-            {
-                if (angle != value)
-                {
-                    angle = value;
-                    PropertyHasChanged();
-                }
-            }
-        }
-
-        #endregion
-
         #region hue
 
         /// <summary>
         /// The HSL hue property
         /// </summary>
         public static readonly DependencyProperty HueProperty =
-            DependencyProperty.Register(nameof(Hue), typeof(byte), typeof(SaturationLightnessSquare),
+            DependencyProperty.Register(nameof(Hue), typeof(byte), typeof(HSLControl),
                 new PropertyMetadata((byte)0, OnColorsChanged));
 
         /// <inheritdoc cref="HueProperty"/>
@@ -101,7 +35,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// The HSL saturation property
         /// </summary>
         public static readonly DependencyProperty SaturationProperty =
-            DependencyProperty.Register(nameof(Saturation), typeof(byte), typeof(SaturationLightnessSquare),
+            DependencyProperty.Register(nameof(Saturation), typeof(byte), typeof(HSLControl),
                 new PropertyMetadata((byte)0, OnColorsChanged));
 
         /// <inheritdoc cref="SaturationProperty"/>
@@ -119,7 +53,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// The HSL lightness property
         /// </summary>
         public static readonly DependencyProperty LightnessProperty =
-            DependencyProperty.Register(nameof(Lightness), typeof(byte), typeof(SaturationLightnessSquare),
+            DependencyProperty.Register(nameof(Lightness), typeof(byte), typeof(HSLControl),
                 new PropertyMetadata((byte)0, OnColorsChanged));
 
         /// <inheritdoc cref="LightnessProperty"/>
@@ -137,7 +71,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// The SolidColorBrush/Color/Fill property
         /// </summary>
         public static readonly DependencyProperty BrushProperty =
-            DependencyProperty.Register(nameof(Brush), typeof(SolidColorBrush), typeof(SaturationLightnessSquare),
+            DependencyProperty.Register(nameof(Brush), typeof(SolidColorBrush), typeof(HSLControl),
                 new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
         /// <inheritdoc cref="BrushProperty"/>
