@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
     /// <summary>
-    /// Interaction logic for ParentSlider.xaml
+    /// Parent for HSL sliders
     /// </summary>
-    public partial class ParentSlider : UserControl
+    public partial class ParentSlider : HSLControl
     {
+        /// <summary>
+        /// The image property
+        /// </summary>
+        public static readonly DependencyProperty ImageProperty =
+            DependencyProperty.Register(nameof(Image), typeof(BitmapImage), typeof(HSLControl),
+                new PropertyMetadata(new BitmapImage()));
+
+        /// <inheritdoc cref="ImageProperty"/>
+        public byte Image
+        {
+            get => (byte)GetValue(ImageProperty);
+            set => SetValue(ImageProperty, value);
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public ParentSlider()
         {
             InitializeComponent();

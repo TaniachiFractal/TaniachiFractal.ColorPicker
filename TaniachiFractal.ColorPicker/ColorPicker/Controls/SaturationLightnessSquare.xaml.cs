@@ -86,13 +86,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             UpdXY();
         }
 
-        private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-            => CaptureMouse();
-
-        private void UserControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
-            => ReleaseMouseCapture();
-
-        private void UserControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        private void HSLControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (IsMouseCaptured)
             {
@@ -102,6 +96,5 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
                 UpdSatLit(x, y);
             }
         }
-
     }
 }

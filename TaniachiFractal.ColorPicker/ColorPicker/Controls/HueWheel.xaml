@@ -8,9 +8,9 @@
                   mc:Ignorable="d"
                   Height="255"
                   Width="255"
-                  MouseDown="UserControl_MouseDown"
-                  MouseUp="UserControl_MouseUp"
-                  MouseMove="UserControl_MouseMove"
+                  MouseDown="HSLControl_MouseDown"
+                  MouseUp="HSLControl_MouseUp"
+                  MouseMove="HSLControl_MouseMove"
                   Loaded="HSLControl_Loaded">
     <UserControl.Resources>
         <BitmapImage x:Key="HueWheelPNG"

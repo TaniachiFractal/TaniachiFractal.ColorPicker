@@ -9,9 +9,9 @@
                   mc:Ignorable="d"
                   Height="128"
                   Width="128"
-                  MouseDown="UserControl_MouseDown"
-                  MouseUp="UserControl_MouseUp"
-                  MouseMove="UserControl_MouseMove"
+                  MouseDown="HSLControl_MouseDown"
+                  MouseUp="HSLControl_MouseUp"
+                  MouseMove="HSLControl_MouseMove"
                   Loaded="HSLControl_Loaded">
     <UserControl.Resources>
         <conv:HueSWMBrushConverter x:Key="HueSWMBrushConverter" />

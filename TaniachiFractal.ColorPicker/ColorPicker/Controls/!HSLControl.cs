@@ -103,6 +103,12 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         #endregion
 
+        private void HSLControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+            => CaptureMouse();
+
+        private void HSLControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+            => ReleaseMouseCapture();
+
         /// <inheritdoc cref="PropertyChangedEventHandler"/>
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -111,5 +117,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         /// </summary>
         protected void PropertyHasChanged()
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+
     }
 }

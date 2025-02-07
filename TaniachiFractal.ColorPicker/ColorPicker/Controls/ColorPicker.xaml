@@ -5,18 +5,24 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
                   d:DataContext="{d:DesignInstance Type=local:ColorPicker}"
-                  mc:Ignorable="d"
-                  d:DesignHeight="450"
-                  d:DesignWidth="800">
+                  mc:Ignorable="d">
     <Grid>
         <StackPanel>
-            <local:HSLCircle Height="32" Width="32" Margin="3"/>
+            <local:HSLCircle Height="32"
+                             Width="32"
+                             Margin="3" />
             <Grid>
                 <local:SaturationLightnessSquare x:Name="SLS" />
                 <local:HueWheel x:Name="HW" />
             </Grid>
-            <local:HueSlider x:Name="HS"
-                             Margin="20" />
+            <StackPanel HorizontalAlignment="Center"
+                        Orientation="Horizontal">
+                <Label x:Name="HL"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" />
+                <local:HueSlider x:Name="HS"
+                                 Margin="20" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </local:HSLControl>

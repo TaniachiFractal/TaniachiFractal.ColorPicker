@@ -19,11 +19,7 @@
                               x:Name="ColorPicker"
                               Hue="222"
                               Saturation="255"
-                              Lightness="130"
-                              />
-            <Label x:Name="HueLabel" />
-            <Label x:Name="SatLabel" />
-            <Label x:Name="LitLabel" />
+                              Lightness="130" />
 
         </StackPanel>
     </Grid>

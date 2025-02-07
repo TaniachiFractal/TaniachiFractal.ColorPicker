@@ -6,9 +6,9 @@
                   xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
                   d:DataContext="{d:DesignInstance Type=local:HueSlider}"
                   mc:Ignorable="d"
-                  MouseDown="UserControl_MouseDown"
-                  MouseUp="UserControl_MouseUp"
-                  MouseMove="UserControl_MouseMove"
+                  MouseDown="HSLControl_MouseDown"
+                  MouseUp="HSLControl_MouseUp"
+                  MouseMove="HSLControl_MouseMove"
                   Loaded="HSLControl_Loaded"
                   Height="10"
                   Width="255"
@@ -18,16 +18,23 @@
                      UriSource="../Graphics/HueStick.PNG" />
     </UserControl.Resources>
     <Grid>
-        <Rectangle Height="10"
-                   Width="255"
-                   RadiusX="5"
-                   RadiusY="5">
-            <Rectangle.Fill>
-                <ImageBrush ImageSource="{StaticResource HueStickPNG}" />
-            </Rectangle.Fill>
-        </Rectangle>
-        <Canvas>
-            <local:HSLCircle x:Name="Slider" Width="20" Height="20" Canvas.Top="-5"/>
-        </Canvas>
+        <StackPanel Orientation="Horizontal">
+            <Grid>
+                <Rectangle Height="10"
+                           Width="255"
+                           RadiusX="5"
+                           RadiusY="5">
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{StaticResource HueStickPNG}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Canvas>
+                    <local:HSLCircle x:Name="Slider"
+                                     Width="20"
+                                     Height="20"
+                                     Canvas.Top="-5" />
+                </Canvas>
+            </Grid>
+        </StackPanel>
     </Grid>
 </local:HSLControl>
