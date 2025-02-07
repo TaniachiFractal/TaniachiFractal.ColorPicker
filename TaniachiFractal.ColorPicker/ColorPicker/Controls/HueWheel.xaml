@@ -37,7 +37,7 @@
             </Path.Data>
         </Path>
         <Canvas>
-            <local:ColorSlider x:Name="CS"
+            <local:HSLCircle x:Name="Slider"
                                Width="10"
                                Height="10" />
         </Canvas>

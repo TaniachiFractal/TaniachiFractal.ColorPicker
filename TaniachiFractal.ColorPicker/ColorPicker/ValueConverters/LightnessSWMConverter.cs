@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
+using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
 {
@@ -10,23 +11,15 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
     /// </summary>
     public class LightnessSWMConverter : IValueConverter
     {
-        private const byte ContrastLimit = 120;
 
-        /// <summary>
-        /// HSL lightness to its contrasting black or white
-        /// </summary>
+        /// <inheritdoc cref="SWMHelper.LightnessContrast(byte)"/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var output = new SolidColorBrush(Colors.Black);
             if (value is byte lit)
             {
-                if (lit < ContrastLimit)
-                {
-                    output = new SolidColorBrush(Colors.White);
-                }
+                return lit.LightnessContrast();
             }
-            output.Freeze();
-            return output;
+            return new SolidColorBrush();
         }
 
         /// <inheritdoc cref="Convert"/>

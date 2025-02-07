@@ -70,10 +70,13 @@
     <Compile Include="ColorPicker\Controls\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\Controls\ColorSlider.xaml.cs">
-      <DependentUpon>ColorSlider.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ColorPicker\Controls\!HSLControl.cs" />
+    <Compile Include="ColorPicker\Controls\HSLCircle.xaml.cs">
+      <DependentUpon>HSLCircle.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\Controls\HueSlider.xaml.cs">
+      <DependentUpon>HueSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\Controls\HueWheel.xaml.cs">
       <DependentUpon>HueWheel.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,7 @@
       <DependentUpon>SaturationLightnessSquare.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\Helpers\SLSHelper.cs" />
+    <Compile Include="ColorPicker\Helpers\SWMHelper.cs" />
     <Compile Include="ColorPicker\ValueConverters\HueAngleConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\LightnessSWMConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\HueSWMBrushConverter.cs" />
@@ -127,7 +131,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ColorPicker\Controls\ColorSlider.xaml">
+    <Page Include="ColorPicker\Controls\HSLCircle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\Controls\HueSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

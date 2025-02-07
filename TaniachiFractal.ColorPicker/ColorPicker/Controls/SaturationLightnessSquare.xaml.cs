@@ -31,8 +31,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         private void HSLControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            ColorSliderMidHeight = CS.ActualHeight / 2;
-            ColorSliderMidWidth = CS.ActualWidth / 2;
+            ColorSliderMidHeight = Slider.ActualHeight / 2;
+            ColorSliderMidWidth = Slider.ActualWidth / 2;
             UpdXY();
         }
 
@@ -42,8 +42,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             X -= ColorSliderMidWidth;
             Y -= ColorSliderMidHeight;
 
-            Canvas.SetLeft(CS, X);
-            Canvas.SetTop(CS, Y);
+            Canvas.SetLeft(Slider, X);
+            Canvas.SetTop(Slider, Y);
         }
 
         private (double coercedX, double coercedY) UpdColorSlider(double x, double y)

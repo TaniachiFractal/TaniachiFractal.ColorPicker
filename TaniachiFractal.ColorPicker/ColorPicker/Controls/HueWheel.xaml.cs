@@ -65,8 +65,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         private void HSLControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ColorSliderMidWidth = CS.ActualWidth / 2;
-            ColorSliderMidHeight = CS.ActualHeight / 2;
+            ColorSliderMidWidth = Slider.ActualWidth / 2;
+            ColorSliderMidHeight = Slider.ActualHeight / 2;
             UpdXY();
             BindHue();
         }
@@ -82,7 +82,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             SetBinding(AngleProperty, bind);
         }
 
-        private void SetAngle(double x, double y)
+        private void UpdAngle(double x, double y)
             => Angle = Math.Atan2(y - wheelMiddle, x - wheelMiddle);
 
         private void UpdXY()
@@ -90,8 +90,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             (X, Y) = (radius * Math.Cos(Angle), radius * Math.Sin(Angle));
             X += wheelMiddle - ColorSliderMidWidth;
             Y += wheelMiddle - ColorSliderMidHeight;
-            Canvas.SetLeft(CS, X);
-            Canvas.SetTop(CS, Y);
+            Canvas.SetLeft(Slider, X);
+            Canvas.SetTop(Slider, Y);
         }
 
         private void UserControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -108,7 +108,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
                 var x = position.X;
                 var y = position.Y;
 
-                SetAngle(x, y);
+                UpdAngle(x, y);
                 UpdXY();
             }
         }

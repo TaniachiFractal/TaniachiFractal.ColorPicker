@@ -1,5 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Windows.Data;
+using System.Windows.Media;
+using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
+using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
@@ -14,6 +17,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         public ColorPicker()
         {
             InitializeComponent();
+            DataContext = this;
             BindCPtoHWandSLS();
             Debug.Write("Color picker by https://github.com/TaniachiFractal/ \n");
         }
@@ -45,6 +49,11 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             SLS.SetBinding(HueProperty, bindHue);
             SLS.SetBinding(SaturationProperty, bindSat);
             SLS.SetBinding(LightnessProperty, bindLit);
+
+            HS.SetBinding(HueProperty, bindHue);
+            HS.SetBinding(SaturationProperty, bindSat);
+            HS.SetBinding(LightnessProperty, bindLit);
         }
+
     }
 }
