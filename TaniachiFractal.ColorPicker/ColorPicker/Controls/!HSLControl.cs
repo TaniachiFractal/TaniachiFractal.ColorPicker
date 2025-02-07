@@ -7,7 +7,7 @@ using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
     /// <summary>
-    /// A control with HSL Hue, Saturation and Lightness properties.
+    /// A control with HSL HueLabel, Saturation and Lightness properties.
     /// </summary>
     public partial class HSLControl : UserControl, INotifyPropertyChanged
     {

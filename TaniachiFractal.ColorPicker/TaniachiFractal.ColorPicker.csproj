@@ -80,6 +80,9 @@
     <Compile Include="ColorPicker\Controls\HueWheel.xaml.cs">
       <DependentUpon>HueWheel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorPicker\Controls\ParentSlider.xaml.cs">
+      <DependentUpon>ParentSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\Controls\SaturationLightnessSquare.xaml.cs">
       <DependentUpon>SaturationLightnessSquare.xaml</DependentUpon>
     </Compile>
@@ -140,6 +143,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorPicker\Controls\HueWheel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\Controls\ParentSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

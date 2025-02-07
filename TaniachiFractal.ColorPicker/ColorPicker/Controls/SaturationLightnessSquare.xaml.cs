@@ -38,7 +38,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 
         private void UpdXY()
         {
-            (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness, ActualHeight);
+            (X, Y) = SLSHelper.SatLitToCoord(Saturation, Lightness, Width, Height);
             X -= ColorSliderMidWidth;
             Y -= ColorSliderMidHeight;
 
@@ -78,7 +78,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
         {
             (x, y) = UpdColorSlider(x, y);
 
-            var (sat, lit) = SLSHelper.CoordToSatLit(x, y, ActualHeight);
+            var (sat, lit) = SLSHelper.CoordToSatLit(x, y, Width, Height);
 
             Saturation = sat;
             Lightness = lit;

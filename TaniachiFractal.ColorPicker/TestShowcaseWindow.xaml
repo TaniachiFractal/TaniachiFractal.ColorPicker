@@ -13,10 +13,17 @@
         ResizeMode="NoResize"
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
-    <Grid Background="Black">
+    <Grid>
         <StackPanel>
             <cont:ColorPicker Margin="10"
-                              x:Name="ColorPicker"/>
+                              x:Name="ColorPicker"
+                              Hue="222"
+                              Saturation="255"
+                              Lightness="130"
+                              />
+            <Label x:Name="HueLabel" />
+            <Label x:Name="SatLabel" />
+            <Label x:Name="LitLabel" />
 
         </StackPanel>
     </Grid>

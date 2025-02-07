@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
+﻿using System.Windows.Controls;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
 {
