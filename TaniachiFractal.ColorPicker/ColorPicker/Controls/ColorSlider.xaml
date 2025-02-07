@@ -11,7 +11,8 @@
         <conv:LightnessSWMConverter x:Key="LighnessSWMConverter" />
     </UserControl.Resources>
     <Grid>
-        <Ellipse Fill="Black"/>
+        <Ellipse Fill="Black"
+                 Margin="3" />
         <Ellipse x:Name="RimCircle"
                  Fill="{Binding Lightness, Converter={StaticResource LighnessSWMConverter}}" />
         <Ellipse x:Name="InnerCircle"

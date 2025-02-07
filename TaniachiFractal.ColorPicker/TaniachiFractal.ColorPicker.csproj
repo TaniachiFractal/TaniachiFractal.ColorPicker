@@ -116,7 +116,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ColorPicker\Graphics\HueStick.png" />
+    <Resource Include="ColorPicker\Graphics\LitStick.png" />
+    <Resource Include="ColorPicker\Graphics\SatLitSquare.png" />
+    <Resource Include="ColorPicker\Graphics\SatStick.png" />
+  </ItemGroup>
   <ItemGroup>
     <Page Include="ColorPicker\Controls\ColorPicker.xaml">
       <SubType>Designer</SubType>
@@ -141,10 +146,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="ColorPicker\Graphics\HueWheel.png" />
-    <Resource Include="ColorPicker\Graphics\SaturationLightnessSquare.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -6,18 +6,20 @@
         xmlns:local="clr-namespace:TaniachiFractal.ColorPicker"
         xmlns:cont="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
         mc:Ignorable="d"
+        FontFamily="Bahnschrift"
+        FontSize="20"
         Height="512"
         Width="512"
         ResizeMode="NoResize"
         Title="Check out this nifty color picker by Taniachi Fractal!"
         Icon="/favicon.ico">
-    <Grid Background="#FF6B6B6B">
+    <Grid Background="White">
         <StackPanel>
             <cont:ColorPicker Margin="10"
                               x:Name="ColorPicker"
                               Hue="128"
                               Saturation="100"
-                              Lightness="100" />
+                              Lightness="127" />
 
         </StackPanel>
     </Grid>
