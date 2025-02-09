@@ -17,7 +17,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Controls
             DataContext = this;
             BindChildren();
 
-            HL.Width = FontSize *3.5;
+            HL.Width = FontSize * 4;
 
             Debug.Write("Color picker by https://github.com/TaniachiFractal/ \n");
         }

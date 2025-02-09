@@ -18,8 +18,7 @@
             <StackPanel HorizontalAlignment="Center"
                         Orientation="Horizontal">
                 <Label x:Name="HL"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+                       VerticalAlignment="Center"/>
                 <local:HueSlider x:Name="HS"
                                  Margin="20" />
             </StackPanel>
