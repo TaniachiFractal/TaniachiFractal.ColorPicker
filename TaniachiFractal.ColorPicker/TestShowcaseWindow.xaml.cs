@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using System.Windows.Data;
+using TaniachiFractal.ColorPicker.ColorPicker.ColorStructs;
 
 namespace TaniachiFractal.ColorPicker
 {
@@ -14,6 +14,7 @@ namespace TaniachiFractal.ColorPicker
         public TestShowcaseWindow()
         {
             InitializeComponent();
+            ColorPicker.HSB = new HSB(60, 100, 100);
         }
     }
 }

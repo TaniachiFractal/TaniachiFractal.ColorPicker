@@ -6,7 +6,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
     /// <summary>
     /// Helps with RGB, HSB
     /// </summary>
-    internal class ColorCodeHelper
+    internal static class ColorCodeHelper
     {
         /// <summary>
         /// Convert HSB to RGB
@@ -15,7 +15,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         /// <param name="sat">Saturation</param>
         /// <param name="brt">Brightness</param>
         /// <returns>A tuple with RGB values</returns>
-        public static (byte red, byte grn, byte blu) HsbToRgb(float hue, float sat, float brt)
+        private static (byte red, byte grn, byte blu) HsbToRgbTup(float hue, float sat, float brt)
         {
             var h = hue % 360;
             var s = sat / 100;
@@ -59,19 +59,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         }
 
         /// <summary>
-        /// Convert <see cref="HSB"/> to <see cref="RGB"/>
-        /// </summary>
-        public static RGB HsbToRgb(HSB hsb)
-            => new RGB(HsbToRgb(hsb.hue, hsb.sat, hsb.brt));
-
-        /// <summary>
         /// Convert RGB to HSB
         /// </summary>
         /// <param name="red">Red</param>
         /// <param name="grn">Greeen</param>
         /// <param name="blu">Blue</param>
         /// <returns>A tuple with HSB values</returns>
-        public static (float hue, float sat, float brt) RgbToHsb(byte red, byte grn, byte blu)
+        private static (float hue, float sat, float brt) RgbToHsbTup(byte red, byte grn, byte blu)
         {
             float hue, sat, brt;
 
@@ -103,9 +97,39 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         }
 
         /// <summary>
+        /// Convert <see cref="HSB"/> to <see cref="RGB"/>
+        /// </summary>
+        public static RGB ToRgb(this HSB hsb)
+            => new RGB(HsbToRgbTup(hsb.Hue, hsb.Sat, hsb.Brt));
+
+        /// <summary>
+        /// Convert HSB to <see cref="RGB"/>
+        /// </summary>
+        public static RGB HsbToRgb(float hue, float sat, float brt)
+            => new RGB(HsbToRgbTup(hue, sat, brt));
+
+        /// <summary>
         /// Convert <see cref="RGB"/> to <see cref="HSB"/>
         /// </summary>
-        public static HSB RgbToHsb(RGB rgb)
-            => new HSB(RgbToHsb(rgb.red, rgb.grn, rgb.blu));
+        public static HSB ToHsb(this RGB rgb)
+            => new HSB(RgbToHsbTup(rgb.red, rgb.grn, rgb.blu));
+
+        /// <summary>
+        /// Convert RGB to <see cref="HSB"/>
+        /// </summary>
+        public static HSB RgbToHsb(byte red, byte grn, byte blu)
+            => new HSB(RgbToHsbTup(red, grn, blu));
+
+        /// <summary>
+        /// Get the pure color of the HSB hue
+        /// </summary>
+        public static RGB HsbHueToRgb(float hue)
+            => HsbToRgb(hue, Cnst.MaxSat, Cnst.MaxBrt);
+
+        /// <summary>
+        /// Get the color of the HSB hue and saturation with max brightness
+        /// </summary>
+        public static RGB HsbHueSatToRgb(float hue, float sat)
+            => HsbToRgb(hue, sat, Cnst.MaxBrt);
     }
 }

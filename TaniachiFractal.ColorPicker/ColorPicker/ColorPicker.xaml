@@ -1,0 +1,30 @@
+﻿<prnt:HSBControl x:Class="TaniachiFractal.ColorPicker.ColorPicker.ColorPicker"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker"
+                 xmlns:inner="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls"
+                 xmlns:prnt="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls"
+                 mc:Ignorable="d"
+                 d:DataContext="{d:DesignInstance Type=local:ColorPicker}">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <inner:HSBShowColor x:Name="OldColor"
+                                    CornerType="BowlOnLeft"
+                                    CornerRadius="20"
+                                    Width="40"
+                                    Height="40" />
+
+                <inner:HSBShowColor x:Name="ShowColor"
+                                    CornerType="BowlOnRight"
+                                    CornerRadius="20"
+                                    Width="40"
+                                    Height="40" 
+                                    Margin="-2 0 0 0"
+                                    />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</prnt:HSBControl>

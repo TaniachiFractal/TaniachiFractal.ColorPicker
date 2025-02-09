@@ -3,7 +3,7 @@
     /// <summary>
     /// Has red, green and blue values
     /// </summary>
-    internal struct RGB
+    internal class RGB
     {
         /// <summary>
         /// The red value
@@ -19,6 +19,16 @@
         /// The blue value
         /// </summary>
         public byte blu;
+
+        /// <summary>
+        /// The base constructor
+        /// </summary>
+        public RGB()
+        {
+            red = 0;
+            grn = 0;
+            blu = 0;
+        }
 
         /// <summary>
         /// The constructor with 3 values

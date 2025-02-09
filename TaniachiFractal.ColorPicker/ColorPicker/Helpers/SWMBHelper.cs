@@ -1,4 +1,5 @@
 ﻿using System.Windows.Media;
+using TaniachiFractal.ColorPicker.ColorPicker.ColorStructs;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
 {
@@ -16,17 +17,18 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         }
 
         /// <summary>
-        /// Convert RGB to <see cref="SolidColorBrush"/>
+        /// Convert <see cref="RGB"/> to <see cref="SolidColorBrush"/>
         /// </summary>
-        /// <param name="rgbTuple">A tuple with Red, Green and Blue values</param>
         /// <returns>New frozen <see cref="SolidColorBrush"/> of the RGB color</returns>
-        public static SolidColorBrush ToBrush(this (byte r, byte g, byte b) rgbTuple)
-            => NewSolidColorBrush(Color.FromRgb(rgbTuple.r, rgbTuple.g, rgbTuple.b));
+        public static SolidColorBrush ToBrush(this RGB rgb)
+            => NewSolidColorBrush(Color.FromRgb(rgb.red, rgb.grn, rgb.blu));
 
         private const byte ContrastVal = 120; 
         /// <returns>New frozen black or white <see cref="SolidColorBrush"/> 
         /// depending on what's more contrasting to the input color</returns>
-        public static SolidColorBrush ContrastingRim(Color color)
-            => (color.R + color.G + color.B) / 3 < ContrastVal ? NewSolidColorBrush(Colors.White) : NewSolidColorBrush(Colors.Black);
+        public static SolidColorBrush ContrastingRim(this Color color)
+            => (color.R + color.G + color.B) / 3 < ContrastVal 
+            ? NewSolidColorBrush(Colors.White) 
+            : NewSolidColorBrush(Colors.Black);
     }
 }

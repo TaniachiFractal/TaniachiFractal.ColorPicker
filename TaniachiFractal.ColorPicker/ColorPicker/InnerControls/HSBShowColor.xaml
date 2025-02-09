@@ -1,0 +1,25 @@
+﻿<prnt:HSBControl x:Class="TaniachiFractal.ColorPicker.ColorPicker.InnerControls.HSBShowColor"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls"
+                 xmlns:prnt="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls"
+                 xmlns:conv="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.ValueConverters"
+                 d:DataContext="{d:DesignInstance Type=local:HSBShowColor}"
+                 mc:Ignorable="d"
+                 MinWidth="10"
+                 MinHeight="10"
+                 Loaded="HSBControl_Loaded">
+    <UserControl.Resources>
+        <conv:ContrastingRimConverter x:Key="ContrastingRimConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Ellipse Fill="Cyan" Width="4" Height="4"/>
+        <Border x:Name="RectBorder"
+                BorderThickness="2"
+                Background="{Binding Brush}"
+                BorderBrush="{Binding Brush, Converter={StaticResource ContrastingRimConverter}}">
+        </Border>
+    </Grid>
+</prnt:HSBControl>

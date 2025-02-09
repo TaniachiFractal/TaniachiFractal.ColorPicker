@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using TaniachiFractal.ColorPicker.ColorPicker.ColorStructs;
 using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
@@ -8,58 +9,22 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// <summary>
     /// A control with Hue, Saturation and Brightness properties
     /// </summary>
-    internal class HSBControl : UserControl
+    public class HSBControl : UserControl
     {
-        #region hue
+        #region HSB
 
         /// <summary>
-        /// The HSB hue property
+        /// The HSB  property
         /// </summary>
-        public static readonly DependencyProperty HueProperty =
-            DependencyProperty.Register(nameof(Hue), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0f, OnColorsChanged));
+        public static readonly DependencyProperty HSBProperty =
+            DependencyProperty.Register(nameof(HSB), typeof(HSB), typeof(HSBControl),
+                new PropertyMetadata(new HSB(), OnColorsChanged));
 
-        /// <inheritdoc cref="HueProperty"/>
-        public float Hue
+        /// <inheritdoc cref="HSBProperty"/>
+        public HSB HSB
         {
-            get => (float)GetValue(HueProperty);
-            set => SetValue(HueProperty, value);
-        }
-
-        #endregion
-
-        #region saturation
-
-        /// <summary>
-        /// The HSB sat property
-        /// </summary>
-        public static readonly DependencyProperty SaturationProperty =
-            DependencyProperty.Register(nameof(Saturation), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0f, OnColorsChanged));
-
-        /// <inheritdoc cref="SaturationProperty"/>
-        public float Saturation
-        {
-            get => (float)GetValue(SaturationProperty);
-            set => SetValue(SaturationProperty, value);
-        }
-
-        #endregion
-
-        #region brightness
-
-        /// <summary>
-        /// The HSB brt property
-        /// </summary>
-        public static readonly DependencyProperty BrightnessProperty =
-            DependencyProperty.Register(nameof(Brightness), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0f, OnColorsChanged));
-
-        /// <inheritdoc cref="BrightnessProperty"/>
-        public float Brightness
-        {
-            get => (float)GetValue(BrightnessProperty);
-            set => SetValue(BrightnessProperty, value);
+            get => (HSB)GetValue(HSBProperty);
+            set => SetValue(HSBProperty, value);
         }
 
         #endregion
@@ -97,7 +62,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         protected virtual void OnColorsChanged()
         {
-            Brush = ColorCodeHelper.HsbToRgb(Hue, Saturation, Brightness).ToBrush();
+            Brush = HSB.ToRgb().ToBrush();
         }
 
         #endregion
