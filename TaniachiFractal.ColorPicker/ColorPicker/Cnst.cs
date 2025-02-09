@@ -5,26 +5,26 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
     /// <summary>
     /// Constants
     /// </summary>
-    public static class Cnst
+    internal static class Cnst
     {
         /// <summary>
-        /// byte.MaxValue = 255
+        /// The max HSB hue value
         /// </summary>
-        public const byte FF = 255;
+        public const short MaxHue = 360;
 
         /// <summary>
-        /// Max rad angle / 255 = 2Pi/255
+        /// The max HSB sat value
         /// </summary>
-        public const double AngleHue = (2 * Math.PI) / FF;
+        public const byte MaxSat = 100;
 
         /// <summary>
-        /// The lightness of a pure hue color
+        /// The max HSB brt value
         /// </summary>
-        public const byte PureColorLightness = 127;
+        public const byte MaxBrt = 100;
 
         /// <summary>
-        /// The saturation of a pure hue color
+        /// Сoefficient between degrees and radians
         /// </summary>
-        public const byte PureColorSaturation = 255;
+        public const double RadDefCoef = (2 * Math.PI) / MaxHue;
     }
 }

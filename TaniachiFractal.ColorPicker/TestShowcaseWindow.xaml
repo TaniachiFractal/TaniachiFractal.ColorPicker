@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TaniachiFractal.ColorPicker"
-        xmlns:cont="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.Controls"
         mc:Ignorable="d"
         FontFamily="Bahnschrift"
         FontSize="20"
@@ -15,11 +14,6 @@
         Icon="/favicon.ico">
     <Grid>
         <StackPanel>
-            <cont:ColorPicker Margin="10"
-                              x:Name="ColorPicker"
-                              Hue="222"
-                              Saturation="255"
-                              Lightness="130" />
 
         </StackPanel>
     </Grid>
