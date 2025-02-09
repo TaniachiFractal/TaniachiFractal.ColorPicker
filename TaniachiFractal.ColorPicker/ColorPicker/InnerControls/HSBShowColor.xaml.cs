@@ -8,24 +8,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
     /// </summary>
     public partial class HSBShowColor : HSBControl
     {
-        #region corner radius
-
-        /// <summary>
-        /// The corner radius property
-        /// </summary>
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(HSBShowColor),
-                new PropertyMetadata(0.0));
-
-        /// <inheritdoc cref="CornerRadiusProperty"/>
-        public double CornerRadius
-        {
-            get => (double)GetValue(CornerRadiusProperty);
-            set => SetValue(CornerRadiusProperty, value);
-        }
-
-        #endregion
-
         #region corner type
 
         /// <summary>
@@ -81,9 +63,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
                         break;
                     }
             }
-            var a = RectBorder.Background;
-            var b = RectBorder.BorderBrush;
-            var c = Brush;
         }
     }
 

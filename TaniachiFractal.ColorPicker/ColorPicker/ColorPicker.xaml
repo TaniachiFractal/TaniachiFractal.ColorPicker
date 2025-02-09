@@ -10,7 +10,8 @@
                  d:DataContext="{d:DesignInstance Type=local:ColorPicker}">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center">
                 <inner:HSBShowColor x:Name="OldColor"
                                     CornerType="BowlOnLeft"
                                     CornerRadius="20"
@@ -21,10 +22,10 @@
                                     CornerType="BowlOnRight"
                                     CornerRadius="20"
                                     Width="40"
-                                    Height="40" 
-                                    Margin="-2 0 0 0"
-                                    />
+                                    Height="40"
+                                    Margin="-2 0 0 0" />
             </StackPanel>
+            <inner:HueSlider x:Name="HueSlider" CornerRadius="5" Margin="0 5 0 0"/>
         </StackPanel>
     </Grid>
 </prnt:HSBControl>

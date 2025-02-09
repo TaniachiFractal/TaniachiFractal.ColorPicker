@@ -11,10 +11,28 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// </summary>
     public class HSBControl : UserControl
     {
+        #region corner radius
+
+        /// <summary>
+        /// The corner radius property
+        /// </summary>
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(HSBControl),
+                new PropertyMetadata(0.0));
+
+        /// <inheritdoc cref="CornerRadiusProperty"/>
+        public double CornerRadius
+        {
+            get => (double)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
+        }
+
+        #endregion
+
         #region HSB
 
         /// <summary>
-        /// The HSB  property
+        /// The HSB property
         /// </summary>
         public static readonly DependencyProperty HSBProperty =
             DependencyProperty.Register(nameof(HSB), typeof(HSB), typeof(HSBControl),

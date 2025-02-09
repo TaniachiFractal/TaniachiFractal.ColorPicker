@@ -14,7 +14,7 @@ namespace TaniachiFractal.ColorPicker
         public TestShowcaseWindow()
         {
             InitializeComponent();
-            ColorPicker.HSB = new HSB(60, 100, 100);
+            ColorPicker.HSB = new HSB(90, 100, 100);
         }
     }
 }

@@ -33,6 +33,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
             };
 
             ShowColor.SetBinding(HSBProperty, bind);
+            HueSlider.SetBinding(HSBProperty, bind);
         }
+
+        
     }
 }
