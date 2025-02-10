@@ -29,6 +29,7 @@
             <inner:HueSlider x:Name="HueSlider"
                              CornerRadius="5"
                              Margin="0 5 0 0"/>
+            <Label x:Name="hue"/>
         </StackPanel>
     </Grid>
 </prnt:HSBControl>

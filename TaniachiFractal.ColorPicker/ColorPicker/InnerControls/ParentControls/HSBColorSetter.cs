@@ -95,7 +95,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// Move the slider with the mouse
         /// </summary>
-        protected void HSBControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        protected virtual void HSBControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (IsMouseCaptured)
             {
