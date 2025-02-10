@@ -14,7 +14,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         /// The <see cref="InnerControls.CornerType"/> property
         /// </summary>
         public static readonly DependencyProperty CornerTypeProperty =
-            DependencyProperty.Register(nameof(HSB), typeof(CornerType), typeof(HSBShowColor),
+            DependencyProperty.Register(nameof(CornerType), typeof(CornerType), typeof(HSBShowColor),
                 new PropertyMetadata(CornerType.None));
 
         /// <inheritdoc cref="CornerTypeProperty"/>
@@ -34,7 +34,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             InitializeComponent();
         }
 
-        private void HSBControl_Loaded(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Set round corners
+        /// </summary>
+        protected override void HSBControl_Loaded(object sender, RoutedEventArgs e)
         {
             switch (CornerType)
             {

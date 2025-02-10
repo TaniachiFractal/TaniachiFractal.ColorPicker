@@ -7,7 +7,14 @@
                 xmlns:prnt="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls"
                 d:DataContext="{d:DesignInstance Type=local:HueSlider}"
                 mc:Ignorable="d"
-                Loaded="HSBControl_Loaded">
+                Loaded="HSBControl_Loaded"
+                MouseDown="HSBControl_MouseDown"
+                MouseUp="HSBControl_MouseUp"
+                MouseMove="HSBControl_MouseMove">
+    <UserControl.Resources>
+        <BitmapImage x:Key="HueStickPNG"
+                     UriSource="../Graphics/HueStick.PNG" />
+    </UserControl.Resources>
     <Grid>
     </Grid>
 </prnt:HSBSlider>

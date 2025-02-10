@@ -17,11 +17,14 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             CornerType = CornerType.Round,
             CornerRadius = 100
         };
-
         /// <summary>
-        /// The root grid
+        /// Half the width of <see cref="SliderCircle"/>
         /// </summary>
-        protected readonly Grid RootGrid = new Grid();
+        protected double SliderCircleHalfWidth;
+        /// <summary>
+        /// Half the height of <see cref="SliderCircle"/>
+        /// </summary>
+        protected double SliderCircleHalfHeight;
 
         #region X
 
@@ -62,37 +65,37 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// Constructor
         /// </summary>
-        public HSBColorSetter()
+        public HSBColorSetter() : base()
         {
-            DataContext = this;
-            BindShowColor();
         }
 
         /// <summary>
-        /// Add a canvas with the slider circle
+        /// Add a canvas with the slider circle to the root control and init its default properties
         /// </summary>
-        public virtual void HSBControl_Loaded(object sender, RoutedEventArgs e)
+        protected void InitSliderCircle()
         {
-            Content = RootGrid;
-            RootGrid.Children.Add(new Canvas() { Children = { SliderCircle } });
+            RootControl.Children.Add(new Canvas() { Children = { SliderCircle } });
+            BindSliderCircle();
+            SliderCircleHalfHeight = SliderCircle.Height / 2;
+            SliderCircleHalfWidth = SliderCircle.Width / 2;
         }
 
         /// <summary>
         /// Capture mouse
         /// </summary>
-        public void HSLControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected void HSBControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
             => CaptureMouse();
 
         /// <summary>
         /// Release mouse capture
         /// </summary>
-        public void HSLControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected void HSBControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
             => ReleaseMouseCapture();
 
         /// <summary>
         /// Move the slider with the mouse
         /// </summary>
-        public void HSLControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
+        protected void HSBControl_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (IsMouseCaptured)
             {
@@ -108,7 +111,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         protected virtual void UpdXY(double x, double y) { }
 
-        private void BindShowColor()
+        private void BindSliderCircle()
         {
             var bindX = new Binding(nameof(X))
             {
@@ -123,7 +126,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             };
 
             SliderCircle.SetBinding(Canvas.LeftProperty, bindX);
-            SliderCircle.SetBinding(Canvas.RightProperty, bindY);
+            SliderCircle.SetBinding(Canvas.TopProperty, bindY);
         }
 
     }

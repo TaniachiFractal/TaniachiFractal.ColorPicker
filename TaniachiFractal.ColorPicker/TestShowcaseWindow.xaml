@@ -16,7 +16,10 @@
         Icon="/favicon.ico">
     <Grid>
         <StackPanel>
-            <cp:ColorPicker x:Name="ColorPicker" />
+            <cp:ColorPicker x:Name="ColorPicker"
+                            Hue="180"
+                            Sat="100"
+                            Brt="100" />
         </StackPanel>
     </Grid>
 </Window>

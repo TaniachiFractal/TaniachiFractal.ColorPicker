@@ -69,8 +69,6 @@
     <Compile Include="ColorPicker\ColorPicker.xaml.cs">
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ColorPicker\ColorStructs\HSB.cs" />
-    <Compile Include="ColorPicker\ColorStructs\RGB.cs" />
     <Compile Include="ColorPicker\Helpers\ColorCodeHelper.cs" />
     <Compile Include="ColorPicker\Helpers\SWMBHelper.cs" />
     <Compile Include="ColorPicker\InnerControls\HSBShowColor.xaml.cs">
@@ -83,6 +81,7 @@
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBControl.cs" />
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBSlider.cs" />
     <Compile Include="ColorPicker\ValueConverters\ContrastingRimConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\SliderToValueConverter.cs" />
     <Compile Include="TestShowcaseWindow.xaml.cs">
       <DependentUpon>TestShowcaseWindow.xaml</DependentUpon>
     </Compile>

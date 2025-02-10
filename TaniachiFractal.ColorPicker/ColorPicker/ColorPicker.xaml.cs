@@ -1,7 +1,4 @@
-﻿using System.Linq.Expressions;
-using System.Windows.Data;
-using TaniachiFractal.ColorPicker.ColorPicker.ColorStructs;
-using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
+﻿using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker
 {
@@ -21,21 +18,22 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
 
             BindChildren();
 
-            OldColor.HSB = HSB;
+            OldColor.Hue = Hue;
+            OldColor.Sat = Sat;
+            OldColor.Brt = Brt;
         }
 
         private void BindChildren()
         {
-            var bind = new Binding(nameof(HSB))
-            {
-                Source = this,
-                Mode = BindingMode.TwoWay,
-            };
+            ShowColor.SetBinding(HueProperty, BindHue);
+            ShowColor.SetBinding(SatProperty, BindSat);
+            ShowColor.SetBinding(BrtProperty, BindBrt);
 
-            ShowColor.SetBinding(HSBProperty, bind);
-            HueSlider.SetBinding(HSBProperty, bind);
+            HueSlider.SetBinding(HueProperty, BindHue);
+            HueSlider.SetBinding(SatProperty, BindSat);
+            HueSlider.SetBinding(BrtProperty, BindBrt);
         }
 
-        
+
     }
 }
