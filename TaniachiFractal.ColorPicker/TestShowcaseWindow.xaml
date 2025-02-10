@@ -19,7 +19,7 @@
             <cp:ColorPicker x:Name="ColorPicker"
                             Hue="60"
                             Sat="60"
-                            Brt="40" 
+                            Brt="100" 
                             Margin="20"/>
         </StackPanel>
     </Grid>

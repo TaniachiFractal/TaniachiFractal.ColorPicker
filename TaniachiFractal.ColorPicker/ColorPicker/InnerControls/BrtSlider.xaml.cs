@@ -8,17 +8,16 @@ using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {
     /// <summary>
-    /// A HSB saturation slider
+    /// A HSB brightness slider
     /// </summary>
-    public partial class SatSlider : HSBSlider
+    public partial class BrtSlider : HSBSlider
     {
         /// <summary>
         /// Constructor
         /// </summary>
-        public SatSlider() : base()
+        public BrtSlider()
         {
             InitializeComponent();
-            SetImage();
         }
 
         /// <summary>
@@ -29,17 +28,18 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             base.HSBControl_Loaded(sender, e);
             BindX();
             BindHueRect();
-            BindBrtRect();
+            BindSatRect();
+            SetImage();
         }
 
         private void BindX()
         {
-            var bind = new Binding(nameof(Sat))
+            var bind = new Binding(nameof(Brt))
             {
                 Source = this,
                 Mode = BindingMode.TwoWay,
                 Converter = new SliderToValueConverter(),
-                ConverterParameter = new double[] { Width, Cnst.MaxSat, SliderCircleHalfWidth }
+                ConverterParameter = new double[] { Width, Cnst.MaxBrt, SliderCircleHalfWidth }
             };
             SetBinding(XProperty, bind);
         }
@@ -55,23 +55,25 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             RectLayer1.SetBinding(BackgroundProperty, bind);
         }
 
-        private void BindBrtRect()
+        private void BindSatRect()
         {
-            var bind = new Binding(nameof(Brt))
+            var bind = new Binding(nameof(Sat))
             {
                 Source = this,
                 Mode = BindingMode.TwoWay,
                 Converter = new BrightnessToAlphaSWMBConverter(),
+                ConverterParameter = Colors.White,
             };
-            RectLayer3.SetBinding(BackgroundProperty, bind);
+            RectLayer2.SetBinding(BackgroundProperty, bind);
         }
 
         private void SetImage()
         {
-            RectLayer2.Background = new ImageBrush()
+            RectLayer3.Background = new ImageBrush()
             {
-                ImageSource = (BitmapImage)Resources["SatStickPNG"]
+                ImageSource = (BitmapImage)Resources["BrtStickPNG"]
             };
+            var a = (BitmapImage)Resources["BrtStickPNG"];
         }
     }
 }

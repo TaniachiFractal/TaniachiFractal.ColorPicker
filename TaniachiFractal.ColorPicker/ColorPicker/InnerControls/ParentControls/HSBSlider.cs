@@ -43,7 +43,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             base.HSBControl_Loaded(sender, e);
 
             SliderCircle.Width = SliderCircle.Height = 20;
-
             RectLayer1.CornerRadius = RectLayer2.CornerRadius = RectLayer3.CornerRadius = new CornerRadius(CornerRadius);
 
             RootControl.Children.Add(RectLayer1);

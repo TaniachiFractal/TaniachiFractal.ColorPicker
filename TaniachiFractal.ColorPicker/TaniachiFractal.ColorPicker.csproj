@@ -71,6 +71,9 @@
     </Compile>
     <Compile Include="ColorPicker\Helpers\ColorCodeHelper.cs" />
     <Compile Include="ColorPicker\Helpers\SWMBHelper.cs" />
+    <Compile Include="ColorPicker\InnerControls\BrtSlider.xaml.cs">
+      <DependentUpon>BrtSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\InnerControls\HSBShowColor.xaml.cs">
       <DependentUpon>HSBShowColor.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="ColorPicker\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\BrtSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

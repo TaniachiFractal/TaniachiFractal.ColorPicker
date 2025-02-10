@@ -24,18 +24,25 @@
                                     CornerRadius="20"
                                     Width="40"
                                     Height="40"
-                                    Margin="-2 0 0 0" 
-                                    />
+                                    Margin="-2 0 0 0" />
             </StackPanel>
-            <inner:HueSlider x:Name="HueSlider"
-                             CornerRadius="5"
-                             Margin="0 5 0 0"/>
+
+            <StackPanel Orientation="Horizontal">
+
+                <inner:HueSlider x:Name="HueSlider"
+                                 CornerRadius="5"
+                                 Margin="0 5 0 0" />
+            </StackPanel>
 
             <inner:SatSlider x:Name="SatSlider"
                              CornerRadius="5"
                              Margin="0 5 0 0" />
 
-            <Label x:Name="hue"/>
+            <inner:BrtSlider x:Name="BrtSlider"
+                             CornerRadius="5"
+                             Margin="0 5 0 0" />
+
+            <Label x:Name="hue" />
         </StackPanel>
     </Grid>
 </prnt:HSBControl>
