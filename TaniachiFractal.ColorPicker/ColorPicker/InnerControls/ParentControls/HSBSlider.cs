@@ -1,10 +1,7 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Data;
+﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Shapes;
 using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
-using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 {
@@ -18,21 +15,15 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The first rectangle
         /// </summary>
-        protected Rectangle RectLayer1 = new Rectangle() { Width = width, Height = height };
+        protected Border RectLayer1 = new Border() { Width = width, Height = height };
         /// <summary>
         /// The second rectangle
         /// </summary>
-        protected Rectangle RectLayer2 = new Rectangle() { Width = width, Height = height };
+        protected Border RectLayer2 = new Border() { Width = width, Height = height };
         /// <summary>
         /// The third rectangle
         /// </summary>
-        protected Rectangle RectLayer3 = new Rectangle() { Width = width, Height = height };
-
-        /// <summary>
-        /// <see cref="Binding"/> for <see cref="HSBColorSetter.X"/><br/>
-        /// ConverterParameter: <see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width
-        /// </summary>
-        protected Binding BindHueToX;
+        protected Border RectLayer3 = new Border() { Width = width, Height = height };
 
         /// <summary>
         /// Constructor
@@ -41,14 +32,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             Width = width;
             Height = height;
-            Background = Colors.Cyan.NewSolidColorBrush();
-
-            BindHueToX = new Binding(nameof(Hue))
-            {
-                Source = this,
-                Mode = BindingMode.TwoWay,
-                Converter = new SliderToValueConverter()
-            };
+            Background = Colors.Cyan.ToBrush();
         }
 
         /// <summary>
@@ -60,8 +44,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 
             SliderCircle.Width = SliderCircle.Height = 20;
 
-            RectLayer1.RadiusX = RectLayer2.RadiusX = RectLayer3.RadiusX = CornerRadius;
-            RectLayer1.RadiusY = RectLayer2.RadiusY = RectLayer3.RadiusY = CornerRadius;
+            RectLayer1.CornerRadius = RectLayer2.CornerRadius = RectLayer3.CornerRadius = new CornerRadius(CornerRadius);
 
             RootControl.Children.Add(RectLayer1);
             RootControl.Children.Add(RectLayer2);
@@ -71,9 +54,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 
             Y -= ActualHeight / 2;
 
-            BindXtoHSB();
-
-            Background = Colors.Transparent.NewSolidColorBrush();
+            Background = Colors.Transparent.ToBrush();
         }
 
         /// <inheritdoc cref="HSBColorSetter.UpdXY(double, double)"/>
@@ -81,13 +62,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             base.UpdXY(x, y);
             X = x;
-        }
-
-        /// <summary>
-        /// Bind the X value to the needed one of the HSB values
-        /// </summary>
-        protected virtual void BindXtoHSB()
-        {
         }
 
     }

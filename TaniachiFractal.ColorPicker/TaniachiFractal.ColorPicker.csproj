@@ -80,8 +80,13 @@
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBColorSetter.cs" />
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBControl.cs" />
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBSlider.cs" />
+    <Compile Include="ColorPicker\InnerControls\SatSlider.xaml.cs">
+      <DependentUpon>SatSlider.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\ValueConverters\ContrastingRimConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\HueToSWMBConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\SliderToValueConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\BrightnessToAlphaSWMBConverter.cs" />
     <Compile Include="TestShowcaseWindow.xaml.cs">
       <DependentUpon>TestShowcaseWindow.xaml</DependentUpon>
     </Compile>
@@ -122,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorPicker\InnerControls\HueSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\SatSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

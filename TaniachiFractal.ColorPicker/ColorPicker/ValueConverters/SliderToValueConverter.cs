@@ -43,7 +43,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
             {
                 if (parameter is double[] args && args.Length == 3)
                 {
-                    return val / (args[0] / args[1]) - args[2];
+                    return val / (args[0] / args[1]);
                 }
                 else
                 {

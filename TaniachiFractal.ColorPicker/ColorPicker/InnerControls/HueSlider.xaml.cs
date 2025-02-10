@@ -1,6 +1,9 @@
-﻿using System.Windows.Media;
+﻿using System.Windows;
+using System.Windows.Data;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
+using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {
@@ -18,16 +21,30 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             SetImage();
         }
 
-        /// <inheritdoc cref="HSBSlider.BindXtoHSB"/>
-        protected override void BindXtoHSB()
+        /// <summary>
+        /// Add bindings
+        /// </summary>
+        protected override void HSBControl_Loaded(object sender, RoutedEventArgs e)
         {
-            BindHueToX.ConverterParameter = new double[] { Width, Cnst.MaxHue, SliderCircleHalfWidth };
-            SetBinding(XProperty, BindHueToX);
+            base.HSBControl_Loaded(sender, e);
+            BindX();
+        }
+
+        private void BindX()
+        {
+            var bind = new Binding(nameof(Hue))
+            {
+                Source = this,
+                Mode = BindingMode.TwoWay,
+                Converter = new SliderToValueConverter(),
+                ConverterParameter = new double[] { Width, Cnst.MaxHue, SliderCircleHalfWidth }
+            };
+            SetBinding(XProperty, bind);
         }
 
         private void SetImage()
         {
-            RectLayer1.Fill = new ImageBrush()
+            RectLayer1.Background = new ImageBrush()
             {
                 ImageSource = (BitmapImage)Resources["HueStickPNG"]
             };

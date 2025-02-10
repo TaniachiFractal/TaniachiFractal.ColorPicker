@@ -49,7 +49,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             { RootControl = fe; }
         }
 
-        private static float Coerce(float val, short maxVal)
+        private static double Coerce(double val, short maxVal)
         {
             if (val > maxVal)
             {
@@ -89,19 +89,19 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// The HSB hue property
         /// </summary>
         public static readonly DependencyProperty HueProperty =
-            DependencyProperty.Register(nameof(Hue), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0F, OnColorsChanged, CoerceHue));
+            DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HSBControl),
+                new PropertyMetadata(0.0, OnColorsChanged, CoerceHue));
 
         /// <inheritdoc cref="HueProperty"/>
-        public float Hue
+        public double Hue
         {
-            get => (float)GetValue(HueProperty);
+            get => (double)GetValue(HueProperty);
             set => SetValue(HueProperty, value);
         }
 
         private static object CoerceHue(DependencyObject dependObj, object value)
         {
-            if (value is float val)
+            if (value is double val)
             {
                 return Coerce(val, Cnst.MaxHue);
             }
@@ -116,19 +116,19 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// The HSB saturation property
         /// </summary>
         public static readonly DependencyProperty SatProperty =
-            DependencyProperty.Register(nameof(Sat), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0F, OnColorsChanged, CoerceSat));
+            DependencyProperty.Register(nameof(Sat), typeof(double), typeof(HSBControl),
+                new PropertyMetadata(0.0, OnColorsChanged, CoerceSat));
 
         /// <inheritdoc cref="SatProperty"/>
-        public float Sat
+        public double Sat
         {
-            get => (float)GetValue(SatProperty);
+            get => (double)GetValue(SatProperty);
             set => SetValue(SatProperty, value);
         }
 
         private static object CoerceSat(DependencyObject dependObj, object value)
         {
-            if (value is float val)
+            if (value is double val)
             {
                 return Coerce(val, Cnst.MaxSat);
             }
@@ -143,19 +143,19 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// The HSB brightness property
         /// </summary>
         public static readonly DependencyProperty BrtProperty =
-            DependencyProperty.Register(nameof(Brt), typeof(float), typeof(HSBControl),
-                new PropertyMetadata(0F, OnColorsChanged, CoerceBrt));
+            DependencyProperty.Register(nameof(Brt), typeof(double), typeof(HSBControl),
+                new PropertyMetadata(0.0, OnColorsChanged, CoerceBrt));
 
         /// <inheritdoc cref="BrtProperty"/>
-        public float Brt
+        public double Brt
         {
-            get => (float)GetValue(BrtProperty);
+            get => (double)GetValue(BrtProperty);
             set => SetValue(BrtProperty, value);
         }
 
         private static object CoerceBrt(DependencyObject dependObj, object value)
         {
-            if (value is float val)
+            if (value is double val)
             {
                 return Coerce(val, Cnst.MaxBrt);
             }

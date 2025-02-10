@@ -7,6 +7,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
     /// </summary>
     internal static class Cnst
     {
+
         /// <summary>
         /// The max HSB hue value
         /// </summary>

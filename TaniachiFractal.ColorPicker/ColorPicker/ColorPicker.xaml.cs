@@ -1,4 +1,5 @@
-﻿using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
+﻿using TaniachiFractal.ColorPicker.ColorPicker.InnerControls;
+using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker
 {
@@ -18,24 +19,29 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
 
             BindChildren();
 
-            OldColor.Hue = Hue;
-            OldColor.Sat = Sat;
-            OldColor.Brt = Brt;
         }
 
         private void BindChildren()
         {
-            ShowColor.SetBinding(HueProperty, BindHue);
-            ShowColor.SetBinding(SatProperty, BindSat);
-            ShowColor.SetBinding(BrtProperty, BindBrt);
-
             HueSlider.SetBinding(HueProperty, BindHue);
             HueSlider.SetBinding(SatProperty, BindSat);
             HueSlider.SetBinding(BrtProperty, BindBrt);
 
+            SatSlider.SetBinding(HueProperty, BindHue);
+            SatSlider.SetBinding(SatProperty, BindSat);
+            SatSlider.SetBinding(BrtProperty, BindBrt);
+
             hue.SetBinding(ContentProperty, BindHue);
         }
 
+        /// <summary>
+        /// Freeze old color
+        /// </summary>
+        protected override void HSBControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            base.HSBControl_Loaded(sender, e);
 
+            OldColor.DataContext = new HSBShowColor() { Hue = Hue, Sat = Sat, Brt = Brt };
+        }
     }
 }
