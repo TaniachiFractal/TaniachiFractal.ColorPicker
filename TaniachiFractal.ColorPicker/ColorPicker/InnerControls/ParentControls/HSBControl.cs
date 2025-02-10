@@ -51,8 +51,18 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 
         private static float Coerce(float val, short maxVal)
         {
-            val %= maxVal + 1;
-            val = val < 0 ? maxVal - val : val;
+            if (val > maxVal)
+            {
+                return val % maxVal;
+            }
+            if (val < -maxVal)
+            {
+                return maxVal + val % maxVal;
+            }
+            if (val < 0)
+            {
+                return maxVal + val;
+            }
             return val;
         }
 

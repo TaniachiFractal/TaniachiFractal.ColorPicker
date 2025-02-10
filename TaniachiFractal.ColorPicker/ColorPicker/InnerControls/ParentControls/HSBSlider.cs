@@ -29,10 +29,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         protected Rectangle RectLayer3 = new Rectangle() { Width = width, Height = height };
 
         /// <summary>
-        /// <see cref="Binding"/> to <see cref="HSBColorSetter.X"/><br/>
-        /// ConverterParameter: <see cref="double"/>[] 0: Slider width, 1: Max value
+        /// <see cref="Binding"/> for <see cref="HSBColorSetter.X"/><br/>
+        /// ConverterParameter: <see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width
         /// </summary>
-        protected Binding BindX;
+        protected Binding BindHueToX;
 
         /// <summary>
         /// Constructor
@@ -43,7 +43,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             Height = height;
             Background = Colors.Cyan.NewSolidColorBrush();
 
-            BindX = new Binding(nameof(X))
+            BindHueToX = new Binding(nameof(Hue))
             {
                 Source = this,
                 Mode = BindingMode.TwoWay,

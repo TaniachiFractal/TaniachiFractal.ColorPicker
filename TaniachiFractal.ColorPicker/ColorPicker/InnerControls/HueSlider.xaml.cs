@@ -1,5 +1,4 @@
-﻿using System.Windows.Input;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 
@@ -22,19 +21,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         /// <inheritdoc cref="HSBSlider.BindXtoHSB"/>
         protected override void BindXtoHSB()
         {
-            base.BindXtoHSB();
-            BindX.ConverterParameter = new double[] { Width, Cnst.MaxHue};
-            SetBinding(HueProperty, BindX);
-        }
-
-        protected override void HSBControl_MouseMove(object sender, MouseEventArgs e)
-        {
-            base.HSBControl_MouseMove(sender, e);
-            if (IsMouseCaptured)
-            {
-                var a = Hue;
-                var b = X;
-            }
+            BindHueToX.ConverterParameter = new double[] { Width, Cnst.MaxHue, SliderCircleHalfWidth };
+            SetBinding(XProperty, BindHueToX);
         }
 
         private void SetImage()

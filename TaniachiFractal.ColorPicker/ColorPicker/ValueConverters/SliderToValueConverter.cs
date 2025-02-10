@@ -12,13 +12,20 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
         /// <inheritdoc cref="SliderToValueConverter"/>
         /// <param name="value">Slider's X <see cref="double"/> value</param>
         /// <param name="targetType">N/A</param>
-        /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value</param>
+        /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width</param>
         /// <param name="culture">N/A</param>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double x)
+            if (double.TryParse(value.ToString(), out var x))
             {
-                return x * GetConversionRate(parameter);
+                if (parameter is double[] args && args.Length == 3)
+                {
+                    return x * (args[0] / args[1]) - args[2];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(nameof(parameter));
+                }
             }
             return 0;
         }
@@ -28,25 +35,20 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
         /// </summary>
         /// <param name="value">Some numeric value</param>
         /// <param name="targetType">N/A</param>
-        /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value</param>
+        /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width</param>
         /// <param name="culture">N/A</param>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (double.TryParse(value.ToString(), out var val))
             {
-                return val / GetConversionRate(parameter);
-            }
-            return 0;
-        }
-
-        /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value</param>
-        private static double GetConversionRate(object parameter)
-        {
-            if (parameter is double[] args && args.Length == 2)
-            {
-                var conversionRate = args[0] / args[1];
-
-                return conversionRate;
+                if (parameter is double[] args && args.Length == 3)
+                {
+                    return val / (args[0] / args[1]) - args[2];
+                }
+                else
+                {
+                    throw new ArgumentOutOfRangeException(nameof(parameter));
+                }
             }
             return 0;
         }
