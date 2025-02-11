@@ -5,11 +5,12 @@ VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaniachiFractal.ColorPicker", "TaniachiFractal.ColorPicker\TaniachiFractal.ColorPicker.csproj", "{C5B8C5A7-F124-4930-A314-0D12B7A0C43F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A26B36E5-911F-462F-BECB-241976290D4E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SL", "SL", "{EA993F78-FC48-471D-B48F-0F3D9AEFCFE0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		TestShowcaseWindow.png = TestShowcaseWindow.png
 	EndProjectSection
 EndProject
 Global
