@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\TaniachiFractal.ColorPicker.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,6 +35,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TaniachiFractal.ColorPicker.App</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -42,7 +49,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -58,6 +64,42 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ColorPicker\Cnst.cs" />
+    <Compile Include="ColorPicker\ColorPicker.xaml.cs">
+      <DependentUpon>ColorPicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\Helpers\ColorCodeHelper.cs" />
+    <Compile Include="ColorPicker\Helpers\SWMHelper.cs" />
+    <Compile Include="ColorPicker\InnerControls\BrtSlider.xaml.cs">
+      <DependentUpon>BrtSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\InnerControls\HSBShowColor.xaml.cs">
+      <DependentUpon>HSBShowColor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\InnerControls\HueSlider.xaml.cs">
+      <DependentUpon>HueSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\InnerControls\HueWheel.xaml.cs">
+      <DependentUpon>HueWheel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\InnerControls\ParentControls\HSBColorSetter.cs" />
+    <Compile Include="ColorPicker\InnerControls\ParentControls\HSBControl.cs" />
+    <Compile Include="ColorPicker\InnerControls\ParentControls\HSBSlider.cs" />
+    <Compile Include="ColorPicker\InnerControls\SatBrtSquare.xaml.cs">
+      <DependentUpon>SatBrtSquare.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\InnerControls\SatSlider.xaml.cs">
+      <DependentUpon>SatSlider.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ColorPicker\ValueConverters\ContrastingRimConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\DegRadConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\HueToSWMBConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\SliderToInvertValueConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\SliderToValueConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\BrightnessToAlphaSWMBConverter.cs" />
+    <Compile Include="TestShowcaseWindow.xaml.cs">
+      <DependentUpon>TestShowcaseWindow.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +128,50 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="ColorPicker\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\BrtSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\HSBShowColor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\HueSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\HueWheel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\SatBrtSquare.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\SatSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestShowcaseWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="ColorPicker\Graphics\BrtStick.png" />
+    <Resource Include="ColorPicker\Graphics\HueStick.png" />
+    <Resource Include="ColorPicker\Graphics\HueWheel.png" />
+    <Resource Include="ColorPicker\Graphics\SatBrtSquare.png" />
+    <Resource Include="ColorPicker\Graphics\SatStick.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,20 @@
+﻿<prnt:HSBSlider x:Class="TaniachiFractal.ColorPicker.ColorPicker.InnerControls.SatSlider"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:local="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls"
+                xmlns:prnt="clr-namespace:TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls"
+                d:DataContext="{d:DesignInstance Type=local:SatSlider}"
+                mc:Ignorable="d"
+                Loaded="HSBControl_Loaded"
+                MouseDown="HSBControl_MouseDown"
+                MouseUp="HSBControl_MouseUp"
+                MouseMove="HSBControl_MouseMove">
+    <UserControl.Resources>
+        <BitmapImage x:Key="SatStickPNG"
+                     UriSource="../Graphics/SatStick.PNG" />
+    </UserControl.Resources>
+    <Grid>
+    </Grid>
+</prnt:HSBSlider>
