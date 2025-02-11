@@ -5,30 +5,30 @@ using System.Windows.Data;
 namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
 {
     /// <summary>
-    /// Converts between angles in rads and byte hues
+    /// Converts between angles in rads and degrees
     /// </summary>
-    public class HueAngleConverter : IValueConverter
+    public class DegRadConverter : IValueConverter
     {
         /// <summary>
-        /// Byte hue to rad angle
+        /// Deg to rad rad
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is byte hue)
+            if (double.TryParse(value.ToString(), out var deg))
             {
-                return hue * Cnst.AngleHue;
+                return deg * Cnst.RadDefCoef;
             }
             return 0;
         }
 
         /// <summary>
-        /// Rad angle to hue
+        /// Rad to deg rad
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double angle)
+            if (double.TryParse(value.ToString(), out var rad))
             {
-                return (byte)(angle / Cnst.AngleHue);
+                return rad / Cnst.RadDefCoef;
             }
             return 0;
         }

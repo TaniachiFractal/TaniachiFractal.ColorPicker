@@ -7,24 +7,22 @@ using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
 {
     /// <summary>
-    /// Convert a HSL lightness to its contrasting black or white
+    /// Convert a <see cref="Brush"/> to its contrasting rim
     /// </summary>
-    public class LightnessSWMConverter : IValueConverter
+    internal class ContrastingRimConverter : IValueConverter
     {
-
-        /// <inheritdoc cref="SWMHelper.LightnessContrast(byte)"/>
+        /// <inheritdoc cref="SWMHelper.ContrastingRim(Color)"/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is byte lit)
+            if (value is SolidColorBrush brush)
             {
-                return lit.LightnessContrast();
+                return brush.Color.ContrastingRim();
             }
-            return new SolidColorBrush();
+            return Colors.Black.ToBrush();
         }
 
         /// <inheritdoc cref="Convert"/>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
             => Convert(value, targetType, parameter, culture);
-
     }
 }

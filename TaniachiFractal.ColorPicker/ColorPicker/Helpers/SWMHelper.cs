@@ -1,41 +1,40 @@
-﻿using System.Globalization;
-using System.Windows.Data;
-using System;
-using System.Windows.Media;
+﻿using System.Windows.Media;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
 {
     /// <summary>
-    /// Helper for <see cref="Brush"/>
+    /// Helper for <see cref="System.Windows.Media"/>
     /// </summary>
-    public static class SWMHelper
+    internal static class SWMHelper
     {
-        private const byte ContrastLimit = 110;
-
-        /// <summary>
-        /// Get the <see cref="SolidColorBrush"/> of the negative color, but if the negative is too similar to the original, shift it a bit
-        /// </summary>
-        public static SolidColorBrush ContrastNegative(this SolidColorBrush input)
+        /// <returns>A new <see cref="SolidColorBrush"/> in the frozen state</returns>
+        public static SolidColorBrush ToBrush(this Color color)
         {
-            var color = input.Color;
-            var output = new SolidColorBrush(Color.FromRgb((byte)(Cnst.FF - color.R), (byte)(Cnst.FF - color.G), (byte)(Cnst.FF - color.B)));
-            output.Freeze();
-            return output;
+            var brush = new SolidColorBrush(color);
+            brush.Freeze();
+            return brush;
         }
 
         /// <summary>
-        /// HSL lightness to its contrasting black or white
+        /// Convert RGB to <see cref="SolidColorBrush"/>
         /// </summary>
-        public static SolidColorBrush LightnessContrast(this byte Lightness)
-        {
-            var output = new SolidColorBrush(Colors.Black);
-            if (Lightness < ContrastLimit)
-            {
-                output = new SolidColorBrush(Colors.White);
-            }
-            output.Freeze();
-            return output;
-        }
+        /// <returns>New frozen <see cref="SolidColorBrush"/> of the RGB color</returns>
+        public static SolidColorBrush ToBrush(this (byte red, byte grn, byte blu) rgb)
+            => Color.FromRgb(rgb.red, rgb.grn, rgb.blu).ToBrush();
 
+        private const byte ContrastVal = 60;
+        private const byte DarkRim = 40, LightRim = 120;
+        /// <returns>New frozen black or white <see cref="SolidColorBrush"/> 
+        /// depending on what's more contrasting to the input color</returns>
+        public static SolidColorBrush ContrastingRim(this Color color)
+            => (color.R + color.G + color.B) / 3 < ContrastVal
+            ? Color.FromRgb(LightRim, LightRim, LightRim).ToBrush()
+            : Color.FromRgb(DarkRim, DarkRim, DarkRim).ToBrush();
+
+        /// <summary>
+        /// <see cref="Color"/> to HSB
+        /// </summary>
+        public static (double hue, double sat, double brt) ToHSB(this Color color)
+            => ColorCodeHelper.RgbToHsb(color.R, color.B, color.G);
     }
 }
