@@ -70,7 +70,7 @@
       <DependentUpon>ColorPicker.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\Helpers\ColorCodeHelper.cs" />
-    <Compile Include="ColorPicker\Helpers\SWMBHelper.cs" />
+    <Compile Include="ColorPicker\Helpers\SWMHelper.cs" />
     <Compile Include="ColorPicker\InnerControls\BrtSlider.xaml.cs">
       <DependentUpon>BrtSlider.xaml</DependentUpon>
     </Compile>
@@ -80,6 +80,9 @@
     <Compile Include="ColorPicker\InnerControls\HueSlider.xaml.cs">
       <DependentUpon>HueSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ColorPicker\InnerControls\HueWheel.xaml.cs">
+      <DependentUpon>HueWheel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBColorSetter.cs" />
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBControl.cs" />
     <Compile Include="ColorPicker\InnerControls\ParentControls\HSBSlider.cs" />
@@ -87,6 +90,7 @@
       <DependentUpon>SatSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="ColorPicker\ValueConverters\ContrastingRimConverter.cs" />
+    <Compile Include="ColorPicker\ValueConverters\DegRadConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\HueToSWMBConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\SliderToValueConverter.cs" />
     <Compile Include="ColorPicker\ValueConverters\BrightnessToAlphaSWMBConverter.cs" />
@@ -134,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ColorPicker\InnerControls\HueSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ColorPicker\InnerControls\HueWheel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

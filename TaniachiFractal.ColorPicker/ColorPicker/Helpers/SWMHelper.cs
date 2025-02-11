@@ -3,9 +3,9 @@
 namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
 {
     /// <summary>
-    /// Helper for <see cref="Brush"/>
+    /// Helper for <see cref="System.Windows.Media"/>
     /// </summary>
-    internal static class SWMBHelper
+    internal static class SWMHelper
     {
         /// <returns>A new <see cref="SolidColorBrush"/> in the frozen state</returns>
         public static SolidColorBrush ToBrush(this Color color)
@@ -29,5 +29,11 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
             => (color.R + color.G + color.B) / 3 < ContrastVal
             ? Colors.White.ToBrush()
             : Colors.Black.ToBrush();
+
+        /// <summary>
+        /// <see cref="Color"/> to HSB
+        /// </summary>
+        public static (double hue, double sat, double brt) ToHSB(this Color color)
+            => ColorCodeHelper.RgbToHsb(color.R, color.B, color.G);
     }
 }

@@ -7,6 +7,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// <summary>
     /// A <see cref="HSBControl"/> that has a slider which can be moved with a mouse to set a color
     /// </summary>
+    /// <remarks>Don't forget to call <see cref="InitSliderCircle"/> where you need your it to be init!</remarks>
     public class HSBColorSetter : HSBControl
     {
         /// <summary>

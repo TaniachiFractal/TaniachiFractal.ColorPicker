@@ -11,7 +11,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
     /// </summary>
     internal class ContrastingRimConverter : IValueConverter
     {
-        /// <inheritdoc cref="SWMBHelper.ContrastingRim(Color)"/>
+        /// <inheritdoc cref="SWMHelper.ContrastingRim(Color)"/>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is SolidColorBrush brush)

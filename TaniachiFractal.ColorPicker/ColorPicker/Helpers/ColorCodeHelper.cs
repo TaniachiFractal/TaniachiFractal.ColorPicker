@@ -90,7 +90,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
             { hue = 4 + ((r - g) / delta); }
 
             hue *= 60;
-            hue %= 360;
+            if (hue < 0)
+            {
+                hue += Cnst.MaxHue;
+            }
+
+            sat *= Cnst.MaxSat;
+            brt *= Cnst.MaxBrt;
 
             return (hue, sat, brt);
         }

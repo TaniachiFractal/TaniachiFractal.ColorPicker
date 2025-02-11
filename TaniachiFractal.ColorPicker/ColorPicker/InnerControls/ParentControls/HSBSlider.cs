@@ -10,20 +10,39 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// </summary>
     public class HSBSlider : HSBColorSetter
     {
-        private const byte width = 255, height = 10;
+        private const byte width = 255, height = 10, sliderSize = 20;
+        private const double margin = 0.8;
 
         /// <summary>
         /// The first rectangle
         /// </summary>
-        protected Border RectLayer1 = new Border() { Width = width, Height = height };
+        protected Border RectLayer1 = new Border()
+        {
+            Width = width - margin,
+            Height = height - margin,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
+        };
         /// <summary>
         /// The second rectangle
         /// </summary>
-        protected Border RectLayer2 = new Border() { Width = width, Height = height };
+        protected Border RectLayer2 = new Border()
+        {
+            Width = width,
+            Height = height,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
         /// <summary>
         /// The third rectangle
         /// </summary>
-        protected Border RectLayer3 = new Border() { Width = width, Height = height };
+        protected Border RectLayer3 = new Border()
+        {
+            Width = width + margin,
+            Height = height + margin,
+            VerticalAlignment = VerticalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center
+        };
 
         /// <summary>
         /// Constructor
@@ -42,8 +61,11 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             base.HSBControl_Loaded(sender, e);
 
-            SliderCircle.Width = SliderCircle.Height = 20;
-            RectLayer1.CornerRadius = RectLayer2.CornerRadius = RectLayer3.CornerRadius = new CornerRadius(CornerRadius);
+            SliderCircle.Width = SliderCircle.Height = sliderSize;
+
+            RectLayer1.CornerRadius = new CornerRadius(CornerRadius - 1);
+            RectLayer2.CornerRadius = new CornerRadius(CornerRadius);
+            RectLayer3.CornerRadius = new CornerRadius(CornerRadius + 1);
 
             RootControl.Children.Add(RectLayer1);
             RootControl.Children.Add(RectLayer2);

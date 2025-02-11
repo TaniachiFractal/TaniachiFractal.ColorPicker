@@ -11,10 +11,16 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// </summary>
     public class HSBControl : UserControl
     {
+        private const double defaultHue = 0;
+        private const double defaultSat = 100;
+        private const double defaultBrt = 100;
+
         /// <summary>
         /// The root control
         /// </summary>
         protected Panel RootControl;
+
+        private bool ChangingVal = false;
 
         /// <summary>
         /// Constructor: Create the HSB bindings
@@ -49,19 +55,15 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             { RootControl = fe; }
         }
 
-        private static double Coerce(double val, short maxVal)
+        private static double CoerceHSB(double val, short maxVal)
         {
             if (val > maxVal)
             {
-                return val % maxVal;
-            }
-            if (val < -maxVal)
-            {
-                return maxVal + val % maxVal;
+                return  maxVal;
             }
             if (val < 0)
             {
-                return maxVal + val;
+                return 0;
             }
             return val;
         }
@@ -90,7 +92,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         public static readonly DependencyProperty HueProperty =
             DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(0.0, OnColorsChanged, CoerceHue));
+                new PropertyMetadata(defaultHue, OnColorsChanged, CoerceHue));
 
         /// <inheritdoc cref="HueProperty"/>
         public double Hue
@@ -103,9 +105,20 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (value is double val)
             {
-                return Coerce(val, Cnst.MaxHue);
+                if (dependObj is HSBControl con)
+                {
+                    return con.CoerceHue(val);
+                }
             }
             return 0;
+        }
+
+        /// <summary>
+        /// Coerce hue
+        /// </summary>
+        protected virtual double CoerceHue(double hue)
+        {
+            return CoerceHSB(hue, Cnst.MaxHue);
         }
 
         #endregion
@@ -117,7 +130,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         public static readonly DependencyProperty SatProperty =
             DependencyProperty.Register(nameof(Sat), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(0.0, OnColorsChanged, CoerceSat));
+                new PropertyMetadata(defaultSat, OnColorsChanged, CoerceSat));
 
         /// <inheritdoc cref="SatProperty"/>
         public double Sat
@@ -130,7 +143,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (value is double val)
             {
-                return Coerce(val, Cnst.MaxSat);
+                return CoerceHSB(val, Cnst.MaxSat);
             }
             return 0;
         }
@@ -144,7 +157,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         public static readonly DependencyProperty BrtProperty =
             DependencyProperty.Register(nameof(Brt), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(0.0, OnColorsChanged, CoerceBrt));
+                new PropertyMetadata(defaultBrt, OnColorsChanged, CoerceBrt));
 
         /// <inheritdoc cref="BrtProperty"/>
         public double Brt
@@ -157,27 +170,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (value is double val)
             {
-                return Coerce(val, Cnst.MaxBrt);
+                return CoerceHSB(val, Cnst.MaxBrt);
             }
             return 0;
-        }
-
-        #endregion
-
-        #region corner radius
-
-        /// <summary>
-        /// The corner radius property
-        /// </summary>
-        public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(0.0));
-
-        /// <inheritdoc cref="CornerRadiusProperty"/>
-        public double CornerRadius
-        {
-            get => (double)GetValue(CornerRadiusProperty);
-            set => SetValue(CornerRadiusProperty, value);
         }
 
         #endregion
@@ -200,6 +195,70 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 
         #endregion
 
+        #region hex
+
+        private const byte validHexLen3 = 3, validHexLen6 = 6;
+
+        /// <summary>
+        /// The hex color property
+        /// </summary>
+        public static readonly DependencyProperty HexProperty =
+            DependencyProperty.Register(nameof(Hex), typeof(string), typeof(HSBControl),
+                new PropertyMetadata(string.Empty, OnHexChanged, CoerceHex));
+
+        /// <inheritdoc cref="HexProperty"/>
+        public string Hex
+        {
+            get => (string)GetValue(HexProperty);
+            private set => SetValue(HexProperty, value);
+        }
+        
+        private static object CoerceHex(DependencyObject dependObj, object value)
+        {
+            if (value is string hex)
+            {
+                if (hex.Length > validHexLen6)
+                {
+                   hex = hex.Substring(0, validHexLen6);
+                }
+                return hex.ToUpper();
+            }
+            return string.Empty;
+        }
+
+        private static void OnHexChanged(DependencyObject dependObj, DependencyPropertyChangedEventArgs evArgs)
+        {
+            if (dependObj is HSBControl con)
+            {
+                con.OnHexChanged();
+            }
+        }
+
+        /// <summary>
+        /// Method to invoke upon changing Hex value
+        /// </summary>
+        protected virtual void OnHexChanged()
+        {
+            if (!ChangingVal && (Hex.Length == validHexLen3 || Hex.Length == validHexLen6))
+            {
+                ChangingVal = true;
+                try
+                {
+                    Brush = new BrushConverter().ConvertFromString('#' + Hex) as SolidColorBrush;
+                    var color = Brush.Color;
+                    (Hue, Sat, Brt) = ColorCodeHelper.RgbToHsb(color.R, color.G, color.B);
+                }
+                catch (System.FormatException)
+                { }
+                finally
+                {
+                    ChangingVal = false;
+                }
+            }
+        }
+
+        #endregion
+
         #region on colors changed
 
         private static void OnColorsChanged(DependencyObject dependObj, DependencyPropertyChangedEventArgs evArgs)
@@ -215,7 +274,37 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         protected virtual void OnColorsChanged()
         {
-            Brush = (Hue, Sat, Brt).HsbToRgb().ToBrush();
+            if (!ChangingVal)
+            {
+                ChangingVal = true;
+                try
+                {
+                    Brush = (Hue, Sat, Brt).HsbToRgb().ToBrush();
+                    Hex = $"{Brush.Color.R:X2}{Brush.Color.G:X2}{Brush.Color.B:X2}";
+                }
+                finally
+                {
+                    ChangingVal = false;
+                }
+            }
+        }
+
+        #endregion
+
+        #region corner radius
+
+        /// <summary>
+        /// The corner radius property
+        /// </summary>
+        public static readonly DependencyProperty CornerRadiusProperty =
+            DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(HSBControl),
+                new PropertyMetadata(0.0));
+
+        /// <inheritdoc cref="CornerRadiusProperty"/>
+        public double CornerRadius
+        {
+            get => (double)GetValue(CornerRadiusProperty);
+            set => SetValue(CornerRadiusProperty, value);
         }
 
         #endregion
