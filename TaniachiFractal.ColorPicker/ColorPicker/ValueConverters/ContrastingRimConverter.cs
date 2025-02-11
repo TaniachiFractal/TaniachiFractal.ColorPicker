@@ -18,7 +18,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
             {
                 return brush.Color.ContrastingRim();
             }
-            return new SolidColorBrush();
+            return Colors.Black.ToBrush();
         }
 
         /// <inheritdoc cref="Convert"/>

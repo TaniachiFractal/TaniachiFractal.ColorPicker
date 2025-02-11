@@ -71,6 +71,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             RootControl.Children.Add(RectLayer2);
             RootControl.Children.Add(RectLayer3);
 
+            RectLayer3.BorderBrush = Colors.DimGray.ToBrush();
+            RectLayer3.BorderThickness = new Thickness(2);
+
             InitSliderCircle();
 
             Y -= ActualHeight / 2;

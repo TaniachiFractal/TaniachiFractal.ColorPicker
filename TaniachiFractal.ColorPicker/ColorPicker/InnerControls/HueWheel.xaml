@@ -17,7 +17,7 @@
                      UriSource="../Graphics/HueWheel.PNG" />
     </UserControl.Resources>
     <Grid>
-        <Path>
+        <Path Stroke="#333" StrokeThickness="1">
             <Path.Fill>
                 <ImageBrush ImageSource="{StaticResource HueWheelPNG}" />
             </Path.Fill>

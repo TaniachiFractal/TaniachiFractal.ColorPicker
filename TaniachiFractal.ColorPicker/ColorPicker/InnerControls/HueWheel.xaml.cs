@@ -85,24 +85,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             UpdAngle(x, y);
         }
 
-        /// <inheritdoc cref="HSBControl.CoerceHue(double)"/>
-        protected override double CoerceHue(double hue)
-        {
-            if (hue > Cnst.MaxHue)
-            {
-                return hue % Cnst.MaxHue;
-            }
-            if (hue < -Cnst.MaxHue)
-            {
-                return Cnst.MaxHue + (hue % Cnst.MaxHue);
-            }
-            if (hue < 0)
-            {
-                return Cnst.MaxHue + hue;
-            }
-            return hue;
-        }
-
         private void BindHueAngle()
         {
             var bind = new Binding(nameof(Hue))
@@ -123,7 +105,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 
         private void UpdAngle(double x, double y)
         {
-            var angle = Math.Atan2(x - wheelMiddle, y - wheelMiddle);
+            var angle = Math.Atan2(y - wheelMiddle, x - wheelMiddle);
             if (angle < 0)
             {
                 angle += Cnst.Tau;

@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
+using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {

@@ -23,12 +23,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
             => Color.FromRgb(rgb.red, rgb.grn, rgb.blu).ToBrush();
 
         private const byte ContrastVal = 60;
+        private const byte DarkRim = 40, LightRim = 120;
         /// <returns>New frozen black or white <see cref="SolidColorBrush"/> 
         /// depending on what's more contrasting to the input color</returns>
         public static SolidColorBrush ContrastingRim(this Color color)
             => (color.R + color.G + color.B) / 3 < ContrastVal
-            ? Colors.White.ToBrush()
-            : Colors.Black.ToBrush();
+            ? Color.FromRgb(LightRim, LightRim, LightRim).ToBrush()
+            : Color.FromRgb(DarkRim, DarkRim, DarkRim).ToBrush();
 
         /// <summary>
         /// <see cref="Color"/> to HSB

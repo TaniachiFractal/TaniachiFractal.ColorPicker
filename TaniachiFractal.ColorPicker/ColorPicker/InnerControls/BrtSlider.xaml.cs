@@ -4,6 +4,7 @@ using System.Windows.Media;
 using System.Windows;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
+using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {
@@ -73,7 +74,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             {
                 ImageSource = (BitmapImage)Resources["BrtStickPNG"]
             };
-            var a = (BitmapImage)Resources["BrtStickPNG"];
         }
     }
 }

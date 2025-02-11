@@ -27,6 +27,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
             HueWheel.SetBinding(SatProperty, BindSat);
             HueWheel.SetBinding(BrtProperty, BindBrt);
 
+            SatBrtSquare.SetBinding(HueProperty, BindHue);
+            SatBrtSquare.SetBinding(SatProperty, BindSat);
+            SatBrtSquare.SetBinding(BrtProperty, BindBrt);
+
             HueSlider.SetBinding(HueProperty, BindHue);
             HueSlider.SetBinding(SatProperty, BindSat);
             HueSlider.SetBinding(BrtProperty, BindBrt);

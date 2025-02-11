@@ -14,7 +14,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
         /// <param name="targetType">N/A</param>
         /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width</param>
         /// <param name="culture">N/A</param>
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (double.TryParse(value.ToString(), out var x))
             {
@@ -37,7 +37,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.ValueConverters
         /// <param name="targetType">N/A</param>
         /// <param name="parameter"><see cref="double"/>[] 0: Slider width, 1: Max value, 2: Half circle width</param>
         /// <param name="culture">N/A</param>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        public virtual object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (double.TryParse(value.ToString(), out var val))
             {

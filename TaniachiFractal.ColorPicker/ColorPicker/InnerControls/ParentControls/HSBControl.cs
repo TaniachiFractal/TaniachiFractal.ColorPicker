@@ -62,7 +62,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (val > maxVal)
             {
-                return  maxVal;
+                return maxVal;
             }
             if (val < 0)
             {
@@ -108,20 +108,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (value is double val)
             {
-                if (dependObj is HSBControl con)
-                {
-                    return con.CoerceHue(val);
-                }
+                return CoerceHSB(val, Cnst.MaxHue);
             }
             return 0;
-        }
-
-        /// <summary>
-        /// Coerce hue
-        /// </summary>
-        protected virtual double CoerceHue(double hue)
-        {
-            return CoerceHSB(hue, Cnst.MaxHue);
         }
 
         #endregion
@@ -213,16 +202,24 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         public string Hex
         {
             get => (string)GetValue(HexProperty);
-            private set => SetValue(HexProperty, value);
+            set => SetValue(HexProperty, value);
         }
-        
+
         private static object CoerceHex(DependencyObject dependObj, object value)
         {
             if (value is string hex)
             {
                 if (hex.Length > validHexLen6)
                 {
-                   hex = hex.Substring(0, validHexLen6);
+                    hex = hex.Substring(0, validHexLen6);
+                }
+                if (hex.StartsWith("#"))
+                {
+                    hex = hex.Substring(1);
+                }
+                else if (hex.StartsWith("0x"))
+                {
+                    hex = hex.Substring(2);
                 }
                 return hex.ToUpper();
             }

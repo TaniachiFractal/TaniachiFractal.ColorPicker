@@ -62,6 +62,7 @@
                         </TransformGroup>
                     </inner:HueWheel.RenderTransform>
                 </inner:HueWheel>
+                <inner:SatBrtSquare x:Name="SatBrtSquare" CornerRadius="8"/>
             </Grid>
 
             <TextBox Width="80"
