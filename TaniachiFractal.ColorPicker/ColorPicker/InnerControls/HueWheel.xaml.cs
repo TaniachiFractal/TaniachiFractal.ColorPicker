@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
-using System.Windows.Input;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
@@ -36,7 +35,23 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         {
             if (dependObj is HueWheel hw)
             {
-                hw.UpdXY();
+                hw.OnAngleChanged();
+            }
+        }
+
+        private void OnAngleChanged()
+        {
+            if (!ChangingVal)
+            {
+                ChangingVal = true;
+                try
+                {
+                    UpdXY();
+                }
+                finally
+                {
+                    ChangingVal = false;
+                }
             }
         }
 
@@ -79,7 +94,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             }
             if (hue < -Cnst.MaxHue)
             {
-                return Cnst.MaxHue + hue % Cnst.MaxHue;
+                return Cnst.MaxHue + (hue % Cnst.MaxHue);
             }
             if (hue < 0)
             {

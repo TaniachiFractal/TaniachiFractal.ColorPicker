@@ -20,7 +20,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         protected Panel RootControl;
 
-        private bool ChangingVal = false;
+        /// <summary>
+        /// If the control is in the process of changing its values
+        /// </summary>
+        protected bool ChangingVal = false;
 
         /// <summary>
         /// Constructor: Create the HSB bindings
