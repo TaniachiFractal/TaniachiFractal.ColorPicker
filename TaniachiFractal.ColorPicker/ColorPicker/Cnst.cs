@@ -7,6 +7,10 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
     /// </summary>
     internal static class Cnst
     {
+        /// <summary>
+        /// Double Pi
+        /// </summary>
+        public const double Tau = Math.PI * 2;
 
         /// <summary>
         /// The max HSB hue value
@@ -26,6 +30,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker
         /// <summary>
         /// Сoefficient between degrees and radians
         /// </summary>
-        public const double RadDefCoef = (2 * Math.PI) / MaxHue;
+        public const double RadDefCoef = Tau / MaxHue;
     }
 }

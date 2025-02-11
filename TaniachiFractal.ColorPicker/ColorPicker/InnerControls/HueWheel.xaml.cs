@@ -122,6 +122,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         }
 
         private void UpdAngle(double x, double y)
-            => Angle = Math.Atan2(y - wheelMiddle, x - wheelMiddle);
+        {
+            var angle = Math.Atan2(x - wheelMiddle, y - wheelMiddle);
+            if (angle < 0)
+            {
+                angle += Cnst.Tau;
+            }
+            Angle = angle;
+        }
     }
 }
