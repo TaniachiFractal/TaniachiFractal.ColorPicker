@@ -189,8 +189,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
 
         #region hex
 
-        private const byte validHexLen3 = 3, validHexLen6 = 6;
-
         /// <summary>
         /// The hex color property
         /// </summary>
@@ -209,18 +207,6 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         {
             if (value is string hex)
             {
-                if (hex.Length > validHexLen6)
-                {
-                    hex = hex.Substring(0, validHexLen6);
-                }
-                if (hex.StartsWith("#"))
-                {
-                    hex = hex.Substring(1);
-                }
-                else if (hex.StartsWith("0x"))
-                {
-                    hex = hex.Substring(2);
-                }
                 return hex.ToUpper();
             }
             return string.Empty;
@@ -239,12 +225,12 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// </summary>
         protected virtual void OnHexChanged()
         {
-            if (!ChangingVal && (Hex.Length == validHexLen3 || Hex.Length == validHexLen6))
+            if (!ChangingVal)
             {
                 ChangingVal = true;
                 try
                 {
-                    Brush = new BrushConverter().ConvertFromString('#' + Hex) as SolidColorBrush;
+                    Brush = new BrushConverter().ConvertFromString(Hex) as SolidColorBrush;
                     var color = Brush.Color;
                     (Hue, Sat, Brt) = ColorCodeHelper.RgbToHsb(color.R, color.G, color.B);
                 }
@@ -280,7 +266,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
                 try
                 {
                     Brush = (Hue, Sat, Brt).HsbToRgb().ToBrush();
-                    Hex = $"{Brush.Color.R:X2}{Brush.Color.G:X2}{Brush.Color.B:X2}";
+                    Hex = $"#{Brush.Color.R:X2}{Brush.Color.G:X2}{Brush.Color.B:X2}";
                 }
                 finally
                 {

@@ -65,7 +65,7 @@
                 <inner:SatBrtSquare x:Name="SatBrtSquare" CornerRadius="8"/>
             </Grid>
 
-            <TextBox Width="80"
+            <TextBox Width="145"
                      Text="{Binding Hex, UpdateSourceTrigger=PropertyChanged}"
                      FontSize="14" />
 
