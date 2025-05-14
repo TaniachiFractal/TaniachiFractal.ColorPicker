@@ -84,13 +84,13 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// Capture mouse
         /// </summary>
-        protected void HSBControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected virtual void HSBControl_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
             => CaptureMouse();
 
         /// <summary>
         /// Release mouse capture
         /// </summary>
-        protected void HSBControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        protected virtual void HSBControl_MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
             => ReleaseMouseCapture();
 
         /// <summary>

@@ -4,7 +4,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
-using TaniachiFractal.ColorPicker.ColorPicker.Helpers;
+using System.Windows.Input;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {
@@ -50,5 +50,17 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
                 ImageSource = (BitmapImage)Resources["HueStickPNG"]
             };
         }
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseDown(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseDown(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseMove(object sender, MouseEventArgs e)
+            => base.HSBControl_MouseMove(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseUp(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseUp(sender, e);
     }
 }

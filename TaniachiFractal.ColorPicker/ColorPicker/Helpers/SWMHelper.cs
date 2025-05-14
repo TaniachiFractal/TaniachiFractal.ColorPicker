@@ -5,7 +5,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
     /// <summary>
     /// Helper for <see cref="System.Windows.Media"/>
     /// </summary>
-    internal static class SWMHelper
+    static internal class SWMHelper
     {
         /// <returns>A new <see cref="SolidColorBrush"/> in the frozen state</returns>
         public static SolidColorBrush ToBrush(this Color color)

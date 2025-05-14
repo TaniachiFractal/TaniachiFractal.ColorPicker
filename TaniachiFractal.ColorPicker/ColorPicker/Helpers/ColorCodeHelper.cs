@@ -5,7 +5,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
     /// <summary>
     /// Helps with RGB, HSB
     /// </summary>
-    internal static class ColorCodeHelper
+    static internal class ColorCodeHelper
     {
         /// <summary>
         /// Convert HSB to RGB
@@ -16,6 +16,20 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.Helpers
         /// <returns>A tuple with RGB values</returns>
         public static (byte red, byte grn, byte blu) HsbToRgb(double hue, double sat, double brt)
         {
+            if (hue < 0)
+            { hue = 0; }
+            if (sat < 0)
+            { sat = 0; }
+            if (brt < 0)
+            { brt = 0; }
+
+            if (hue > Cnst.MaxHue)
+            { hue = Cnst.MaxHue; }
+            if (sat > Cnst.MaxSat)
+            { sat = Cnst.MaxSat; }
+            if (brt > Cnst.MaxBrt)
+            { brt = Cnst.MaxBrt; }
+
             var h = hue % Cnst.MaxHue;
             var s = sat / Cnst.MaxSat;
             var b = brt / Cnst.MaxBrt;

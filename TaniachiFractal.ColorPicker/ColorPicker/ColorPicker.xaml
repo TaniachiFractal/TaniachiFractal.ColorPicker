@@ -18,12 +18,14 @@
                             Value="8" />
                 </Style>
             </Style.Resources>
+            <Setter Property="TabIndex"
+                    Value="-1" />
             <Setter Property="FontSize"
                     Value="14" />
             <Setter Property="BorderThickness"
                     Value="2px" />
             <Setter Property="Width"
-                    Value="30" />
+                    Value="40" />
             <Setter Property="VerticalContentAlignment"
                     Value="Center" />
             <Setter Property="HorizontalContentAlignment"
@@ -62,19 +64,22 @@
                         </TransformGroup>
                     </inner:HueWheel.RenderTransform>
                 </inner:HueWheel>
-                <inner:SatBrtSquare x:Name="SatBrtSquare" CornerRadius="8"/>
+                <inner:SatBrtSquare x:Name="SatBrtSquare"
+                                    CornerRadius="8" />
             </Grid>
 
-            <TextBox Width="145"
+            <TextBox x:Name="HexTextBox"
+                     Width="121"
                      Text="{Binding Hex, UpdateSourceTrigger=PropertyChanged}"
-                     FontSize="14" />
+                     FontSize="14"
+                     TextChanged="HexTextBox_TextChanged" />
 
             <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Margin="-30 0 0 0">
 
-                <TextBox Text="{Binding Hue, StringFormat={}{0:F0}, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Hue, StringFormat={}{0:F1}, UpdateSourceTrigger=PropertyChanged}" />
 
                 <inner:HueSlider x:Name="HueSlider"
                                  CornerRadius="5" />
@@ -85,7 +90,7 @@
                         VerticalAlignment="Center"
                         Margin="-30 0 0 0">
 
-                <TextBox Text="{Binding Sat, StringFormat={}{0:F0}, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Sat, StringFormat={}{0:F1}, UpdateSourceTrigger=PropertyChanged}" />
 
                 <inner:SatSlider x:Name="SatSlider"
                                  CornerRadius="5" />
@@ -96,7 +101,7 @@
                         VerticalAlignment="Center"
                         Margin="-30 0 0 0">
 
-                <TextBox Text="{Binding Brt, StringFormat={}{0:F0}, UpdateSourceTrigger=PropertyChanged}" />
+                <TextBox Text="{Binding Brt, StringFormat={}{0:F1}, UpdateSourceTrigger=PropertyChanged}" />
 
                 <inner:BrtSlider x:Name="BrtSlider"
                                  CornerRadius="5" />
@@ -104,3 +109,4 @@
         </StackPanel>
     </Grid>
 </prnt:HSBControl>
+

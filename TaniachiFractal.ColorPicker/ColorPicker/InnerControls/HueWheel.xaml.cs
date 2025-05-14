@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Input;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
 
@@ -11,8 +12,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
     /// </summary>
     public partial class HueWheel : HSBColorSetter
     {
-        private const byte sliderSize = 15;
-        private const double radius = 113.5;
+        private const byte SliderSize = 15;
+        private const double Radius = 113.5;
         private double wheelMiddle;
 
         #region angle
@@ -72,7 +73,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         /// </summary>=
         protected override void HSBControl_Loaded(object sender, RoutedEventArgs e)
         {
-            SliderCircle.Width = SliderCircle.Height = sliderSize;
+            SliderCircle.Width = SliderCircle.Height = SliderSize;
             base.HSBControl_Loaded(sender, e);
             InitSliderCircle();
             wheelMiddle = ActualHeight / 2;
@@ -98,7 +99,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 
         private void UpdXY()
         {
-            (X, Y) = (radius * Math.Cos(Angle), radius * Math.Sin(Angle));
+            (X, Y) = (Radius * Math.Cos(Angle), Radius * Math.Sin(Angle));
             X += wheelMiddle - SliderCircleHalfWidth;
             Y += wheelMiddle - SliderCircleHalfHeight;
         }
@@ -112,5 +113,17 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             }
             Angle = angle;
         }
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseDown(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseDown(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseMove(object sender, MouseEventArgs e)
+            => base.HSBControl_MouseMove(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseUp(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseUp(sender, e);
     }
 }

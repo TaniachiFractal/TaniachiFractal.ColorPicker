@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -9,11 +10,12 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
     /// <summary>
     /// A control with Hue, Saturation and Brightness properties
     /// </summary>
+    [DebuggerDisplay("H{Hue.ToString(\"N2\")} S{Sat.ToString(\"N2\")} B{Brt.ToString(\"N2\")}")]
     public class HSBControl : UserControl
     {
-        private const double defaultHue = 0;
-        private const double defaultSat = 100;
-        private const double defaultBrt = 100;
+        private const double DefaultHue = -1;
+        private const double DefaultSat = -1;
+        private const double DefaultBrt = -1;
 
         /// <summary>
         /// The root control
@@ -93,9 +95,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The HSB hue property
         /// </summary>
-        public static readonly DependencyProperty HueProperty =
+        public readonly static DependencyProperty HueProperty =
             DependencyProperty.Register(nameof(Hue), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(defaultHue, OnColorsChanged, CoerceHue));
+                new PropertyMetadata(DefaultHue, OnColorsChanged, CoerceHue));
 
         /// <inheritdoc cref="HueProperty"/>
         public double Hue
@@ -120,9 +122,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The HSB saturation property
         /// </summary>
-        public static readonly DependencyProperty SatProperty =
+        public readonly static DependencyProperty SatProperty =
             DependencyProperty.Register(nameof(Sat), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(defaultSat, OnColorsChanged, CoerceSat));
+                new PropertyMetadata(DefaultSat, OnColorsChanged, CoerceSat));
 
         /// <inheritdoc cref="SatProperty"/>
         public double Sat
@@ -147,9 +149,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The HSB brightness property
         /// </summary>
-        public static readonly DependencyProperty BrtProperty =
+        public readonly static DependencyProperty BrtProperty =
             DependencyProperty.Register(nameof(Brt), typeof(double), typeof(HSBControl),
-                new PropertyMetadata(defaultBrt, OnColorsChanged, CoerceBrt));
+                new PropertyMetadata(DefaultBrt, OnColorsChanged, CoerceBrt));
 
         /// <inheritdoc cref="BrtProperty"/>
         public double Brt
@@ -174,7 +176,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The SolidColorBrush/Color/Fill property
         /// </summary>
-        public static readonly DependencyProperty BrushProperty =
+        public readonly static DependencyProperty BrushProperty =
             DependencyProperty.Register(nameof(Brush), typeof(SolidColorBrush), typeof(HSBControl),
                 new PropertyMetadata(new SolidColorBrush(Colors.Black)));
 
@@ -192,7 +194,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The hex color property
         /// </summary>
-        public static readonly DependencyProperty HexProperty =
+        public readonly static DependencyProperty HexProperty =
             DependencyProperty.Register(nameof(Hex), typeof(string), typeof(HSBControl),
                 new PropertyMetadata(string.Empty, OnHexChanged, CoerceHex));
 
@@ -220,6 +222,8 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
             }
         }
 
+        private readonly static System.Drawing.Color emptyBlack = System.Drawing.Color.FromArgb(0, 0, 0, 0);
+
         /// <summary>
         /// Method to invoke upon changing Hex value
         /// </summary>
@@ -230,9 +234,24 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
                 ChangingVal = true;
                 try
                 {
-                    Brush = new BrushConverter().ConvertFromString(Hex) as SolidColorBrush;
-                    var color = Brush.Color;
+                    System.Drawing.Color color;
+
+                    try
+                    {
+                        var output = System.Drawing.ColorTranslator.FromHtml(Hex);
+                        if (output == null)
+                        {
+                            color = emptyBlack;
+                        }
+                        color = output;
+                    }
+                    catch
+                    {
+                        color = emptyBlack;
+                    }
+
                     (Hue, Sat, Brt) = ColorCodeHelper.RgbToHsb(color.R, color.G, color.B);
+                    Brush = new SolidColorBrush(Color.FromRgb(color.R, color.G, color.B));
                 }
                 catch (System.FormatException)
                 { }
@@ -265,6 +284,9 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
                 ChangingVal = true;
                 try
                 {
+                    Hue = CoerceHSB(Hue, Cnst.MaxHue);
+                    Sat = CoerceHSB(Sat, Cnst.MaxSat);
+                    Brt = CoerceHSB(Brt, Cnst.MaxBrt);
                     Brush = (Hue, Sat, Brt).HsbToRgb().ToBrush();
                     Hex = $"#{Brush.Color.R:X2}{Brush.Color.G:X2}{Brush.Color.B:X2}";
                 }
@@ -282,7 +304,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls
         /// <summary>
         /// The corner radius property
         /// </summary>
-        public static readonly DependencyProperty CornerRadiusProperty =
+        public readonly static DependencyProperty CornerRadiusProperty =
             DependencyProperty.Register(nameof(CornerRadius), typeof(double), typeof(HSBControl),
                 new PropertyMetadata(0.0));
 

@@ -2,6 +2,7 @@
 using System.Windows;
 using TaniachiFractal.ColorPicker.ColorPicker.InnerControls.ParentControls;
 using TaniachiFractal.ColorPicker.ColorPicker.ValueConverters;
+using System.Windows.Input;
 
 namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
 {
@@ -10,7 +11,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
     /// </summary>
     public partial class SatBrtSquare : HSBColorSetter
     {
-        private const byte sliderSize = 15;
+        private const byte SliderSize = 15;
 
         /// <summary>
         /// Constructor
@@ -26,7 +27,7 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
         /// </summary>
         protected override void HSBControl_Loaded(object sender, RoutedEventArgs e)
         {
-            SliderCircle.Width = SliderCircle.Height = sliderSize;
+            SliderCircle.Width = SliderCircle.Height = SliderSize;
             base.HSBControl_Loaded(sender, e);
             InitSliderCircle();
             BindXY();
@@ -60,5 +61,17 @@ namespace TaniachiFractal.ColorPicker.ColorPicker.InnerControls
             SetBinding(XProperty, bindSat);
             SetBinding(YProperty, bindBrt);
         }
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseDown(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseDown(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseMove(object sender, MouseEventArgs e)
+            => base.HSBControl_MouseMove(sender, e);
+
+        /// <inheritdoc/>
+        protected override void HSBControl_MouseUp(object sender, MouseButtonEventArgs e)
+            => base.HSBControl_MouseUp(sender, e);
     }
 }
